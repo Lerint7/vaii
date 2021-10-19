@@ -21,7 +21,7 @@ div#logo{
     height: 80px;
 }
 nav#menu{
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     height: 80px;
@@ -31,7 +31,7 @@ nav#menu ul{
     height: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start ;
+    align-items:  center ;
     justify-content: right;
     column-gap: 3%;
 }
@@ -205,9 +205,10 @@ div#stredStranky {
 /*diskusia*/
 .login {
     background: #a9927d;
-    position: fixed;
-    top: 0%;
-    right: 0%;
+    position: absolute;
+    width: 205px;
+    right: 0;
+    top: 0;
     display: flex;
     flex-direction: column;
 }
@@ -277,7 +278,7 @@ div#diskusiaText {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     height: 40px;
@@ -294,7 +295,6 @@ footer {
         left: 5px;
     }
     div#registracia {
-        left: 5px;
         position: relative;
     }
 
@@ -315,7 +315,6 @@ footer {
         left: 0%;
     }
     div#registracia {
-        left: 0;
         width: 100%;
         margin-top: 300px;
         height: 500px;
@@ -324,9 +323,12 @@ footer {
         align-items: center;
         width: 100%;
         height: 150px;
-        top: 5%;
+        top: 75%;
     }
 
+    nav#menu{
+        top: -30px;
+    }
 }
 
 
@@ -442,17 +444,22 @@ footer {
 
 /*CLANOK*/
 @media screen and (max-width: 580px )  {
+
     div#stredStranky {
         width: 100vw;
     }
 
     .vyhladavaciPanel {
+        padding-left: 10%;
+        padding-right: 10%;
         width: auto;
+        height: auto;
         top: 1600px;
         position: absolute;
     }
 
     nav#menu {
+        top: -30px;
         padding-left: 10%;
     }
 }
