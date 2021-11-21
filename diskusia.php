@@ -22,7 +22,7 @@
                 <li><a href="index.php">Domov</a></li>
                 <li id = "diskusiaMenuTlacidlo"><a href="diskusia.php">Diskusia</a></li>
             </ul>
-            <form method="post" enctype="application/x-www-form-urlencoded" action="pripojenie.php">
+            <form method="post" enctype="application/x-www-form-urlencoded" action="login.php">
             <div class="login">
                 <input type="text" name="username" placeholder="username" required>
                 <input type="password" name="password" placeholder="password" required>
@@ -37,13 +37,13 @@
 </header>
 <div id="posunSirkaScreenu">
 <div id = "registracia">
-    <form method="post" enctype="application/x-www-form-urlencoded" action="pripojenie.php">
+    <form method="post" enctype="application/x-www-form-urlencoded" action="registracia.php.php">
     <div id = "RegistraciaMojeUdaje">
         <p style="color: #f2f4f3; font-weight: bold; font-size: 16pt">Prihlasenie</p>
-        <input type="text" name="meno" placeholder="Užívateľ" >
-        <input type="text" name="email" placeholder="E-mailová adresa" >
-        <input type="password" name="heslo" placeholder="Heslo" >
-        <input type="password" name="hesloOpakovanie" placeholder="Zadajte heslo znova" >
+        <input type="text" name="meno" placeholder="Užívateľ" required>
+        <input type="text" name="email" placeholder="E-mailová adresa" required>
+        <input type="password" name="heslo" placeholder="Heslo" required>
+        <input type="password" name="hesloOpakovanie" placeholder="Zadajte heslo znova" required>
         <input type="submit" value="REGISTRÁCIA">
     </div>
     <div id ="RegistraciaSocialne">
