@@ -15,10 +15,12 @@ header {
     z-index: 2;
 }
 div#logo{
-    position: fixed;
+    position: relative;
+    background-color: aliceblue;
     top: 0;
     width: 80px;
     height: 80px;
+    z-index: 1;
 }
 nav#menu{
     position: absolute;
@@ -27,7 +29,7 @@ nav#menu{
     height: 80px;
 }
 nav#menu ul{
-    width: 50%;
+    width: 85%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -316,16 +318,16 @@ footer {
         left: 0%;
     }
     div#registracia {
-        width: 105%;
+        width: 100%;
         margin-top: 300px;
         height: 500px;
     }
     .login{
+        width: 101vw;
         align-items: center;
-        width: 110%;
-        height: 150px;
         top: 75%;
-        right: -30px;
+        right: 0;
+        left: 0;
     }
 
     nav#menu{
@@ -333,106 +335,11 @@ footer {
     }
 }
 
-
-/*610px
-@media screen and (max-width: 420px) and (max-height: 830px) {
-        div#diskusiaText {
-            margin-top: 200%;
-            width: 100%;
-            height: 765px;
-            margin-left: -22px;
-        }
-
-        .login {
-            top: -35%;
-            right: -5%;
-        }
-
-        div#registracia {
-            margin-top: 55%;
-            left: 0%;
-            height: 355px;
-            width: 100%;
-        }
-
-        div#RegistraciaSocialne {
-            top: -45%;
-            right: 15%;
-        }
-
-        div#RegistraciaMojeUdaje {
-            top: 0%;
-            left: 17%;
-        }
-    }
-
-@media screen and (max-width: 360px) and (max-height: 650px) {
-    div#diskusiaText {
-        margin-top: 200%;
-        width: 100%;
-        height: 870px;
-        margin-left: -22px;
-    }
-
-    .login {
-        top: -55%;
-    }
-
-    div#registracia {
-        margin-top: 55%;
-        left: 0%;
-        height: 355px;
-        width: 100%;
-    }
-
-    div#RegistraciaSocialne {
-        top: -51%;
-        right: 19%;
-    }
-
-    div#RegistraciaMojeUdaje {
-        top: 0%;
-        left: 12%;
-    }
-}
-
-@media screen and (max-width: 320px) and (max-height: 580px) {
-    div#diskusiaText {
-        margin-top: 250%;
-        width: 100%;
-        height: 1020px;
-    }
-
-    .login {
-        top: -35%;
-        right: 7%;
-    }
-
-    div#registracia {
-        margin-top: 55%;
-        left: 0%;
-        height: 355px;
-        width: 100%;
-    }
-
-    div#RegistraciaSocialne {
-        top: 100%;
-        right: 10%;
-    }
-
-    div#RegistraciaMojeUdaje {
-        top: 0%;
-        left: 10%;
-    }
-}
-*/
-
-
-
 /*CLANOK*/
 @media screen and (max-width: 1350px){
     div#stredStranky {
         margin-left: 0%;
+        width: auto;
     }
 
     .vyhladavaciPanel {

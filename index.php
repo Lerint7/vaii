@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <title>Title</title>
 </head>
 
@@ -21,9 +21,9 @@
     <nav id="menu" >
         <ul>
             <!-- a = odkaz na čokolvek,premenná-->
-            <li><a href="clanok.html">Článok</a></li>
-            <li><a href="index.html">Domov</a></li>
-            <li><a href="diskusia.html">Diskusia</a></li>
+            <li><a href="clanok.php">Článok</a></li>
+            <li><a href="index.php">Domov</a></li>
+            <li><a href="diskusia.php">Diskusia</a></li>
         </ul>
     </nav>
     <!--
@@ -55,17 +55,17 @@
     </div>
 
 <div id = "ObrazkyKnih">
-    <a onmouseenter="showText1()" onmouseleave="hideText1()" href="kralovnaOhna.html" class="obrazkyKnihOdkaz">
+    <a onmouseenter="showText1()" onmouseleave="hideText1()" href="kralovnaOhna.php" class="obrazkyKnihOdkaz">
      <img src="https://pbs.twimg.com/media/D2GPQMDWoAAe8G6.jpg" alt="prebal knihy Kráľovna ohňa" class="obrazok">
         <span class= "text">"Aenean efficitur"</span>
     </a>
 <!--niečo je zle-->
-    <a onmouseenter="showText2()" onmouseleave="hideText2()" class="obrazkyKnihOdkaz" href="panVeze.html">
+    <a onmouseenter="showText2()" onmouseleave="hideText2()" class="obrazkyKnihOdkaz" href="panVeze.php">
         <img src="https://pbs.twimg.com/media/D2GPR0oXcAUAqnD?format=jpg&name=medium" alt="prebal knihy Pán veže" class="obrazok">
         <em class= "text">"Iny text"</em>
     </a>
 
-    <a onmouseenter="showText3()" onmouseleave="hideText3()" class="obrazkyKnihOdkaz" href="piesenKrvy.html">
+    <a onmouseenter="showText3()" onmouseleave="hideText3()" class="obrazkyKnihOdkaz" href="piesenKrvy.php">
         <img src="https://cdnb.artstation.com/p/assets/images/images/001/464/415/large/navar-n-1.jpg?1446885755" alt="prebal knihy Píseň krve" class="obrazok">
         <p class= "text">"treti text"</p>
     </a>

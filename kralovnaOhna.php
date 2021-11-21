@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <title>Title</title>
 </head>
 
@@ -14,9 +14,9 @@
         <nav id="menu">
             <ul>
                 <!-- a = odkaz na čokolvek,premenná-->
-                <li><a href="clanok.html">Článok</a></li>
-                <li><a href="index.html">Domov</a></li>
-                <li><a href="diskusia.html">Diskusia</a></li>
+                <li><a href="clanok.php">Článok</a></li>
+                <li><a href="index.php">Domov</a></li>
+                <li><a href="diskusia.php">Diskusia</a></li>
             </ul>
         </nav>
    <!-- <div id = "vyhladavac">
