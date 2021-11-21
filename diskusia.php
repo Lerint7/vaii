@@ -1,7 +1,6 @@
+<?php include('registracia.php') ?>
 <!DOCTYPE html>
 <html lang="en" >
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -26,7 +25,7 @@
             <div class="login">
                 <input type="text" name="username" placeholder="username" required>
                 <input type="password" name="password" placeholder="password" required>
-                <input type="submit" value="Prihlásenie">
+                <input type="submit" value="Prihlásenie" name = "login">
             </div>
             </form>
     </nav>
@@ -37,9 +36,10 @@
 </header>
 <div id="posunSirkaScreenu">
 <div id = "registracia">
-    <form method="post" enctype="application/x-www-form-urlencoded" action="registracia.php.php">
+    <form method="post" enctype="application/x-www-form-urlencoded" action="diskusia.php">
     <div id = "RegistraciaMojeUdaje">
         <p style="color: #f2f4f3; font-weight: bold; font-size: 16pt">Prihlasenie</p>
+         <?php echo $error; ?>
         <input type="text" name="meno" placeholder="Užívateľ" required>
         <input type="text" name="email" placeholder="E-mailová adresa" required>
         <input type="password" name="heslo" placeholder="Heslo" required>
