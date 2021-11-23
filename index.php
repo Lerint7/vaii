@@ -1,6 +1,16 @@
+<?php
+if (session_status() == PHP_SESSION_NONE ) {
+    session_start();
+    echo "Zaplo server v ife";
+}
+if(isset($_SESSION['menoLogin'])) {
+    echo "prihlaseny";
+} else {
+    echo "ee";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->

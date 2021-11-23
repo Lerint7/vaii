@@ -23,8 +23,8 @@
             </ul>
             <form method="post" enctype="application/x-www-form-urlencoded" action="login.php">
             <div class="login">
-                <input type="text" name="username" placeholder="username" required>
-                <input type="password" name="password" placeholder="password" required>
+                <input type="text" name="menoLogin" placeholder="meno" required>
+                <input type="password" name="hesloLogin" placeholder="heslo" required>
                 <input type="submit" value="Prihlásenie" name = "login">
             </div>
             </form>

@@ -1,32 +1,35 @@
 <?php
 require "pripojenie.php";
 global $pripojenie, $meno, $error;
-
-if (isset($_POST['login'])) {
-    if (empty($username)) {
+if (isset($_POST['menoLogin'])) {
+    $menoLogin = ($_POST['menoLogin']);
+    $hesloLogin = ($_POST['hesloLogin']);
+    if (empty($menoLogin)) {
         $error = "Treba zadať meno";
     }
-    if (empty($password)) {
+    if (empty($hesloLogin)) {
         $error = "Treba zadať heslo";
     }
-
-    $meno = e($_POST['username']);
-    $heslo = e($_POST['$heslo']);
-
+    echo $error;
     if (empty($error)) {
-        $heslo = md5($heslo);
-
-        $query = "SELECT * FROM users WHERE meno='$meno' AND heslo='$heslo' LIMIT 1";
-        $vysledok = mysqli_query($pripojenie, $query);
-
-        if (mysqli_num_rows($vysledok) == 1) {
-            $prihlaseny = mysqli_fetch_assoc($vysledok);
-            $_SESSION['meno'] = $prihlaseny;
-            $_SESSION['success']  = "Prihlásený";
-
-                header('location: index.php');
-            }
+        echo "je to sračka";
+        $query = $pripojenie->prepare("SELECT heslo FROM users WHERE meno = ?");
+        $query->bind_param('s', $menoLogin);
+        $query->execute();
+        $query->store_result();
+        $query->bind_result($hesloCrypted);
+        $query->fetch();
+        echo $hesloCrypted;
+        echo $hesloLogin;
+        if (password_verify($hesloLogin, $hesloCrypted)) {
+            echo "som v ife";
+            session_start();
+            $_SESSION['menoLogin'] = $menoLogin;
+            header('location:index.php');
         } else {
-        $error = "Zlé meno alebo heslo";
+            echo "som v else";
+            $error = "Zlé meno alebo heslo";
+
         }
+    }
 }

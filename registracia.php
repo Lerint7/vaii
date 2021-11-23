@@ -34,7 +34,8 @@ if ($user) {
 }
 
 if (empty($error)) {
-    $heslo = md5($heslo);
+    $heslo = password_hash($heslo, PASSWORD_BCRYPT);
+    //$heslo = md5($heslo);
     $insert = $pripojenie->prepare("INSERT INTO users (meno, email, heslo) VALUES (?,?,?)");
     $insert->bind_param('sss', $meno, $email, $heslo);
     $insert->execute();
