@@ -48,7 +48,7 @@ nav#menu ul li a {
 
 }
 nav#menu ul li a:hover {
-    color: #A5471B;
+    color: #a9927d;
 }
 svg {
     display: inline-block;
@@ -134,7 +134,7 @@ div#pozadieHome {
 }
 
 .text.active {
-    color: #A5471B;
+    color: #a9927d;
     display: block;
 }
 .obrazkyKnihOdkaz {
@@ -287,6 +287,157 @@ footer {
     height: 40px;
     background: #a9927d;
 }
+ /*loginPage*/
+
+div#profil {
+    background-color: #f2f4f3;
+    left: 10%;
+    right: 10%;
+    width: 80%;
+    height: 75%;
+    top: 10%;
+    position: absolute;
+}
+
+div#profiloveOkno {
+    background-color: #a9927d;
+    left: 5%;
+    top: 5%;
+    position: absolute;
+    width: 30%;
+    height: 70%;
+}
+
+div#profiloveUdaje {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #f2f4f3;
+    font-size: 20pt;
+    font-weight: bold;
+    background-color: #a9927d;
+    right: 5%;
+    top: 5%;
+    position: absolute;
+    width: 55%;
+    height: 90%;
+}
+
+div#profilFoto {
+    /*bacground_url*/
+    top: 10%;
+    left: 22%;
+    display: inline-block;
+    width: 14vw;
+    height: 14vw;
+    position: relative;
+    background-color: maroon;
+    background-position: 50% 50%;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+div#menoLogin {
+    top: 15%;
+    left: 10%;
+    width: 80%;
+    height: 15%;
+    position: relative;
+    background-color: maroon;
+    color: white;
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+}
+div#main-div {
+    padding-top: 20%;
+    display: flex;
+    flex-flow: column;
+}
+div#hesloUdaje {
+    margin-left: 32%;
+}
+div#menoUdaje {
+    margin-left: 32%;
+}
+
+div#hesloPotvrdeneUdaje {
+    margin-left: 13%;
+}
+
+div#odhlasenie input[type="submit"] {
+    width: 200px;
+    height: auto;
+    background: #A5471B;
+    color: #f2f4f3;
+    cursor: pointer;
+    text-align: center;
+    font-size: 15pt;
+}
+
+/*930 šírka*/
+@media screen and (max-width: 930px) {
+    div#profil {
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 85%;
+    }
+    div#profilFoto {
+        left:27%
+    }
+}
+
+@media screen and (max-width: 740px) {
+    div#profiloveUdaje {
+        top: 50%;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+    }
+    div#profiloveOkno {
+        left: 0;
+        top: 5%;
+        width: 100%;
+        height: 50%;
+    }
+    div#profilFoto {
+        top: 10%;
+        left: 36%;
+        width: 25vw;
+        height: 25vw;
+    }
+
+}
+
+@media screen and (max-width: 425px){
+    div#hesloUdaje {
+        margin-left: 0%;
+    }
+    div#main-div {
+        padding-top: 10%;
+        font-size: 14pt;
+        width: 100%;
+    }
+
+    div#menoUdaje {
+        margin-left: 0%;
+    }
+    div#hesloPotvrdeneUdaje {
+        margin-left: 0%;
+    }
+
+
+}
+
+@media screen and (max-width: 350px){
+    div#main-div {
+        font-size: 20pt;
+        width: 50%;
+        display: flex;
+        flex-flow: column;
+    }
+}
 
 /*diskusia*/
 @media screen and (max-width: 1280px) {
@@ -368,7 +519,7 @@ footer {
     }
 
     nav#menu {
-        padding-left:30%;
+        padding-left:32%;
     }
 }
 

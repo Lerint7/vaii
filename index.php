@@ -1,12 +1,6 @@
 <?php
 if (session_status() == PHP_SESSION_NONE ) {
     session_start();
-    echo "Zaplo server v ife";
-}
-if(isset($_SESSION['menoLogin'])) {
-    echo "prihlaseny";
-} else {
-    echo "ee";
 }
 ?>
 <!DOCTYPE html>
@@ -34,13 +28,13 @@ if(isset($_SESSION['menoLogin'])) {
             <li><a href="clanok.php">Článok</a></li>
             <li><a href="index.php">Domov</a></li>
             <li><a href="diskusia.php">Diskusia</a></li>
+            <?php
+                if(isset($_SESSION['menoLogin'])) {
+                    echo  '<li><a href="userPage.php">Profil</a></li>';
+                }
+            ?>
         </ul>
     </nav>
-    <!--
-    <div id = "vyhladavac">
-        <input type="text" class="searchTerm" placeholder="Čo chcete nájsť??">
-    </div>
-    -->
 </header>
 
 <div id="pozadieHome"> </div>

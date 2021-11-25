@@ -29,10 +29,6 @@
             </div>
             </form>
     </nav>
-    <!--
-    <div id = "vyhladavac">
-        <input type="text" class="searchTerm" placeholder="Čo chcete nájsť??">
-    </div> -->
 </header>
 <div id="posunSirkaScreenu">
 <div id = "registracia">

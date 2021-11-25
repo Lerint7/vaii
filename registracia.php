@@ -40,7 +40,7 @@ if (empty($error)) {
     $insert->bind_param('sss', $meno, $email, $heslo);
     $insert->execute();
     $_SESSION['meno'] = $meno;
-    $_SESSION['prihlasenie'] = "Ste prihlásený";
+    //$_SESSION['prihlasenie'] = "Ste prihlásený";
     $insert->close();
     $pripojenie->close();
 }?>
