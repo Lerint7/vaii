@@ -1,16 +1,32 @@
 <?php session_start();
 require "pripojenie.php";
-if(!isset($_SESSION['menoLogin'])){
+if (!isset($_SESSION['menoLogin'])) {
     header("Location:diskusia.php");
     die;
 }
-$login = $_SESSION["menoLogin"];
-$sql = "SELECT meno, email FROM users WHERE (meno = '$login');";
-$insert = $pripojenie->prepare($sql);
-$insert->bind_param('ss', $meno, $email);
+$insert = $pripojenie->prepare("SELECT meno, email FROM users WHERE meno = ?");
+$insert->bind_param('s', $_SESSION['menoLogin']);
 $insert->execute();
+$insert->store_result();
+$insert->bind_result($meno, $email);
+$insert->fetch();
 
+if (isset($_POST['zmenaMena'])) {
+    $insert = $pripojenie->prepare("UPDATE users set meno = ? where meno = ?");
+    $insert->bind_param('ss', $_POST['zmenaMena'] , $_SESSION['menoLogin']);
+    $insert->execute();
+    $_SESSION['menoLogin'] = $_POST['zmenaMena'];
+    header("Refresh:0");
+}
+
+if (isset($_POST['zmenaMailu'])) {
+    $insert = $pripojenie->prepare("UPDATE users set email = ? where meno = ?");
+    $insert->bind_param('ss', $_POST['zmenaMailu'] , $_SESSION['menoLogin']);
+    $insert->execute();
+    header("Refresh:0");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,15 +61,15 @@ $insert->execute();
     </div>
 
     <div id = "profiloveUdaje" style="list-style: none">
+        <form method="post" enctype="application/x-www-form-urlencoded" >
         <div id="main-div">
             <div id = "menoUdaje" >
-
                 <label for="input">Meno</label>
-                <input type="text" id="input" value=<?php echo $meno ?>">
+                <input type="text" id="input" name = "zmenaMena" value = "<?php echo $meno ?>">
             </div>
-            <div id = "emailUdaje">
+            <div id = "emailUdaje" >
                 <label for="input">Emailová adresa</label>
-                <input type="text" id="input" value = "<?php echo $email ?>">
+                <input type="text" id="input" name = "zmenaMailu" value = "<?php echo $email ?>">
             </div>
             <div id = "hesloUdaje" >
                 <label for="input">Heslo</label>
@@ -64,9 +80,9 @@ $insert->execute();
                 <input type="password" id="input" >
             </div>
         </div>
-        <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 60%; height: 6%; font-size: 14pt; margin: auto">
+        <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto">
+        </form>
     </div>
-
 </div>
 
 <footer style="position: fixed">

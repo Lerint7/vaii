@@ -354,16 +354,6 @@ div#main-div {
     display: flex;
     flex-flow: column;
 }
-div#hesloUdaje {
-    margin-left: 32%;
-}
-div#menoUdaje {
-    margin-left: 32%;
-}
-
-div#hesloPotvrdeneUdaje {
-    margin-left: 13%;
-}
 
 div#odhlasenie input[type="submit"] {
     width: 200px;
@@ -411,20 +401,11 @@ div#odhlasenie input[type="submit"] {
 }
 
 @media screen and (max-width: 425px){
-    div#hesloUdaje {
-        margin-left: 0%;
-    }
+
     div#main-div {
         padding-top: 10%;
         font-size: 14pt;
         width: 100%;
-    }
-
-    div#menoUdaje {
-        margin-left: 0%;
-    }
-    div#hesloPotvrdeneUdaje {
-        margin-left: 0%;
     }
 
 

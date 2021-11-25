@@ -29,7 +29,6 @@ if (isset($_POST['menoLogin'])) {
         } else {
             echo "som v else";
             $error = "Zlé meno alebo heslo";
-
         }
     }
 }
