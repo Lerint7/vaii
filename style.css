@@ -407,8 +407,6 @@ div#odhlasenie input[type="submit"] {
         font-size: 14pt;
         width: 100%;
     }
-
-
 }
 
 @media screen and (max-width: 350px){
@@ -417,6 +415,9 @@ div#odhlasenie input[type="submit"] {
         width: 50%;
         display: flex;
         flex-flow: column;
+        padding-left: 20vw;
+        margin-top: -30%;
+
     }
 }
 

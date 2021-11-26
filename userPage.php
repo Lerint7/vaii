@@ -25,6 +25,16 @@ if (isset($_POST['zmenaMailu'])) {
     $insert->execute();
     header("Refresh:0");
 }
+
+if (isset($_POST['zmazanieUctu'])) {
+    $menoLogin = $_SESSION['menoLogin'];
+    $insert = $pripojenie->prepare("DELETE from users where meno = ?");
+    $insert->bind_param('s',$menoLogin );
+    $insert->execute();
+    unset($_SESSION);
+    session_destroy();
+    header('Location: index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +90,8 @@ if (isset($_POST['zmenaMailu'])) {
                 <input type="password" id="input" >
             </div>
         </div>
-        <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto">
+            <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto">
+            <input type="submit" value="Zmazanie účtu" name = "zmazanieUctu" style="width: 100%; height: 10%; font-size: 16pt; margin-top: 10px">
         </form>
     </div>
 </div>
