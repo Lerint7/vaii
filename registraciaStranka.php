@@ -19,7 +19,13 @@
                 <!-- a = odkaz na čokolvek,premenná-->
                 <li><a href="clanok.php">Článok</a></li>
                 <li><a href="index.php">Domov</a></li>
-                <li id = "diskusiaMenuTlacidlo"><a href="diskusia.php">Diskusia</a></li>
+                <?php
+                if(isset($_SESSION['menoLogin'])) {
+                    echo  '<li><a href="userPage.php">Profil</a></li>';
+                } else {
+                    echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
+                }
+                ?>
             </ul>
             <form method="post" enctype="application/x-www-form-urlencoded" action="login.php">
             <div class="login">
@@ -32,13 +38,13 @@
 </header>
 <div id="posunSirkaScreenu">
 <div id = "registracia">
-    <form method="post" enctype="application/x-www-form-urlencoded" action="diskusia.php">
+    <form method="post" enctype="application/x-www-form-urlencoded" action="registraciaStranka.php">
     <div id = "RegistraciaMojeUdaje">
         <p style="color: #f2f4f3; font-weight: bold; font-size: 16pt">Prihlasenie</p>
          <?php echo $error; ?>
-        <input type="text" name="meno" placeholder="Užívateľ" required>
-        <input type="text" name="email" placeholder="E-mailová adresa" required>
-        <input type="password" name="heslo" placeholder="Heslo" required>
+        <input type="text" name="meno" placeholder="Užívateľ" required minlength="6">
+        <input type="text" name="email" placeholder="E-mailová adresa" required >
+        <input type="password" name="heslo" placeholder="Heslo" required minlength="6">
         <input type="password" name="hesloOpakovanie" placeholder="Zadajte heslo znova" required>
         <input type="submit" value="REGISTRÁCIA">
     </div>

@@ -16,7 +16,13 @@
                 <!-- a = odkaz na čokolvek,premenná-->
                 <li><a href="clanok.php">Článok</a></li>
                 <li><a href="index.php">Domov</a></li>
-                <li><a href="diskusia.php">Diskusia</a></li>
+                <?php
+                if(isset($_SESSION['menoLogin'])) {
+                    echo  '<li><a href="userPage.php">Profil</a></li>';
+                } else {
+                    echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
+                }
+                ?>
             </ul>
         </nav>
    <!-- <div id = "vyhladavac">

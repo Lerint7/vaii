@@ -27,10 +27,11 @@ if (session_status() == PHP_SESSION_NONE ) {
             <!-- a = odkaz na čokolvek,premenná-->
             <li><a href="clanok.php">Článok</a></li>
             <li><a href="index.php">Domov</a></li>
-            <li><a href="diskusia.php">Diskusia</a></li>
             <?php
-                if(isset($_SESSION['menoLogin'])) {
+                if (isset($_SESSION['menoLogin'])) {
                     echo  '<li><a href="userPage.php">Profil</a></li>';
+                } else {
+                    echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
                 }
             ?>
         </ul>
@@ -42,7 +43,6 @@ if (session_status() == PHP_SESSION_NONE ) {
 <div id = knihyPozadie style="width: 100% ; height: 100%">
 
     <div style="position: relative; min-height: 10px">
-
     <div id="uvodnytext">
         <p>“Explore.”</p>
         <span>orem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo, a varius purus lorem in massa. </span>
@@ -55,7 +55,6 @@ if (session_status() == PHP_SESSION_NONE ) {
               style="stroke:none; fill:#a9927d ">
         </path>
     </svg>
-
     </div>
 
 <div id = "ObrazkyKnih">

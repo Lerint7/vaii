@@ -2,7 +2,10 @@
 session_start();
 require "pripojenie.php";
 global $pripojenie,$error;
-
+if (isset($_SESSION['menoLogin'])) {
+    header("Location:userPage.php");
+    die;
+}
 if (isset($_POST['meno'])){
     $meno = $_POST['meno'];
     $email = $_POST['email'];
@@ -35,7 +38,6 @@ if ($user) {
 
 if (empty($error)) {
     $heslo = password_hash($heslo, PASSWORD_BCRYPT);
-    //$heslo = md5($heslo);
     $insert = $pripojenie->prepare("INSERT INTO users (meno, email, heslo) VALUES (?,?,?)");
     $insert->bind_param('sss', $meno, $email, $heslo);
     $insert->execute();

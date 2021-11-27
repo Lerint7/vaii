@@ -1,9 +1,11 @@
 <?php session_start();
 require "pripojenie.php";
 if (!isset($_SESSION['menoLogin'])) {
-    header("Location:diskusia.php");
+    header("Location:registraciaStranka.php");
     die;
 }
+$menoLogin = $_SESSION['menoLogin'];
+
 $insert = $pripojenie->prepare("SELECT meno, email FROM users WHERE meno = ?");
 $insert->bind_param('s', $_SESSION['menoLogin']);
 $insert->execute();
@@ -12,22 +14,32 @@ $insert->bind_result($meno, $email);
 $insert->fetch();
 
 if (isset($_POST['zmenaMena'])) {
-    $insert = $pripojenie->prepare("UPDATE users set meno = ? where meno = ?");
-    $insert->bind_param('ss', $_POST['zmenaMena'] , $_SESSION['menoLogin']);
-    $insert->execute();
-    $_SESSION['menoLogin'] = $_POST['zmenaMena'];
-    header("Refresh:0");
+    if(strlen($_POST['zmenaMena']) > 6) {
+        $insert = $pripojenie->prepare("UPDATE users set meno = ? where meno = ?");
+        $insert->bind_param('ss', $_POST['zmenaMena'], $_SESSION['menoLogin']);
+        $insert->execute();
+        $_SESSION['menoLogin'] = $_POST['zmenaMena'];
+        header("Refresh:0");
+    } else {
+        $message = "Meno je príliš krátke. Minimálne dĺžka je 6 znakov";
+        echo "<script type='text/javascript'>alert('$message');</script>";;
+    }
 }
 
 if (isset($_POST['zmenaMailu'])) {
-    $insert = $pripojenie->prepare("UPDATE users set email = ? where meno = ?");
-    $insert->bind_param('ss', $_POST['zmenaMailu'] , $_SESSION['menoLogin']);
-    $insert->execute();
-    header("Refresh:0");
+    $znaky = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
+    if (!preg_match ($znaky, $_POST['zmenaMailu'])) {
+        $message = "Email nie je platný";
+        echo "<script type='text/javascript'>alert('$message');</script>";;
+    } else {
+        $insert = $pripojenie->prepare("UPDATE users set email = ? where meno = ?");
+        $insert->bind_param('ss', $_POST['zmenaMailu'] , $_SESSION['menoLogin']);
+        $insert->execute();
+        header("Refresh:0");
+    }
 }
 
 if (isset($_POST['zmazanieUctu'])) {
-    $menoLogin = $_SESSION['menoLogin'];
     $insert = $pripojenie->prepare("DELETE from users where meno = ?");
     $insert->bind_param('s',$menoLogin );
     $insert->execute();
@@ -35,6 +47,25 @@ if (isset($_POST['zmazanieUctu'])) {
     session_destroy();
     header('Location: index.php');
 }
+
+if ( (isset($_POST['zmenaHesla'])) && (isset($_POST['zmenaHeslaOpakovanie'])) ) {
+    if(strlen($_POST['zmenaHesla']) > 6 ) {
+        if (($_POST['zmenaHesla']) == ($_POST['zmenaHeslaOpakovanie'])) {
+            $heslo = $_POST['zmenaHesla'];
+            $heslo = password_hash($heslo, PASSWORD_BCRYPT);
+            $insert = $pripojenie->prepare("UPDATE users set heslo = ? where meno = ?");
+            $insert->bind_param('ss',$heslo ,$menoLogin );
+            $insert->execute();
+        } else {
+            $message = "Heslá sa nezhodujú.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+    } else {
+        $message = "Heslo je príliš krátke. Minimálne dĺžka je 6 znakov";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -49,10 +80,15 @@ if (isset($_POST['zmazanieUctu'])) {
 <header>
     <nav id="menu">
         <ul>
-            <!-- a = odkaz na čokolvek,premenná-->
             <li><a href="clanok.php">Článok</a></li>
             <li><a href="index.php">Domov</a></li>
-            <li><a href="diskusia.php">Diskusia</a></li>
+            <?php
+            if(isset($_SESSION['menoLogin'])) {
+                echo  '<li><a href="userPage.php">Profil</a></li>';
+            } else {
+                echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
+            }
+            ?>
         </ul>
     </nav>
 </header>
@@ -83,15 +119,15 @@ if (isset($_POST['zmazanieUctu'])) {
             </div>
             <div id = "hesloUdaje" >
                 <label for="input">Heslo</label>
-                <input type="password" id="input" >
+                <input type="password" id="input" name = "zmenaHesla" >
             </div>
             <div id = "hesloPotvrdeneUdaje">
                 <label for="input">Heslo znova</label>
-                <input type="password" id="input" >
+                <input type="password" id="input" name = "zmenaHeslaOpakovanie">
             </div>
         </div>
-            <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto">
-            <input type="submit" value="Zmazanie účtu" name = "zmazanieUctu" style="width: 100%; height: 10%; font-size: 16pt; margin-top: 10px">
+            <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto" onclick="return confirm('Chcete určite zmeniť údaje?')">
+            <input type="submit" value="Zmazanie účtu" name = "zmazanieUctu" style="width: 100%; height: 10%; font-size: 16pt; margin-top: 10px" onclick="return confirm('Chcete určite vymazať účet?')">
         </form>
     </div>
 </div>
