@@ -364,6 +364,61 @@ div#odhlasenie input[type="submit"] {
     text-align: center;
     font-size: 15pt;
 }
+/*forum*/
+
+div#obrazokForum {
+    width: 70%;
+    height: 120px;
+    background-color: #A5471B;
+    position: absolute;
+    top: 80px;
+    left: 15%;
+    right: 15%;
+    color: white;
+    font-weight: bold;
+}
+div#textForum {
+    display: flex;
+    flex-flow: column;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+div#kategoria {
+    color: white;
+    position: absolute;
+    top: 35%;
+    left: 15%;
+}
+#button {
+    top: 10%;
+    left: 80%;
+    position: absolute;
+    border-radius: 25%;
+    background-color: transparent;
+    color: white;
+    border: 3px solid #55ACEE;
+    width: 15%;
+    height: 30%;
+}
+#button:hover {
+    background-color: #55ACEE;
+}
+div#kategoria button {
+    background-color: #55ACEE;
+    border: 2px solid #32508E;
+    color: white;
+    padding: 10px 24px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    font-size: 12pt;
+}
+div#kategoria :hover {
+    background-color: #32508E;
+}
+
 
 /*930 šírka*/
 @media screen and (max-width: 930px) {

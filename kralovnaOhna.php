@@ -14,7 +14,7 @@
         <nav id="menu">
             <ul>
                 <!-- a = odkaz na čokolvek,premenná-->
-                <li><a href="clanok.php">Článok</a></li>
+                <li><a href="forum.php">Fórum</a></li>
                 <li><a href="index.php">Domov</a></li>
                 <?php
                 if(isset($_SESSION['menoLogin'])) {

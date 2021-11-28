@@ -48,7 +48,7 @@ if (isset($_POST['zmazanieUctu'])) {
     header('Location: index.php');
 }
 
-if ( (isset($_POST['zmenaHesla'])) && (isset($_POST['zmenaHeslaOpakovanie'])) ) {
+if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) ) {
     if(strlen($_POST['zmenaHesla']) > 6 ) {
         if (($_POST['zmenaHesla']) == ($_POST['zmenaHeslaOpakovanie'])) {
             $heslo = $_POST['zmenaHesla'];
@@ -80,7 +80,7 @@ if ( (isset($_POST['zmenaHesla'])) && (isset($_POST['zmenaHeslaOpakovanie'])) ) 
 <header>
     <nav id="menu">
         <ul>
-            <li><a href="clanok.php">Článok</a></li>
+            <li><a href="forum.php">Článok</a></li>
             <li><a href="index.php">Domov</a></li>
             <?php
             if(isset($_SESSION['menoLogin'])) {
