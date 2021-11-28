@@ -6,6 +6,7 @@ if (isset($_SESSION['menoLogin'])) {
     header("Location:userPage.php");
     die;
 }
+
 if (isset($_POST['meno'])){
     $meno = $_POST['meno'];
     $email = $_POST['email'];
@@ -18,7 +19,27 @@ if (isset($_POST['meno'])){
     }
 
     if ($heslo != $hesloOpakovanie) {
-        $error ="Heslá sa nezhodujú";
+        $error = "Heslá sa nezhodujú";
+    }
+
+    if (strlen($meno) < 6) {
+        $error = "Meno je príliš krátke. Minimálne dĺžka je 6 znakov";
+    }
+
+    if (strlen($heslo) < 6) {
+        $error = "Heslo je príliš krátke. Minimálne dĺžka je 6 znakov";
+    }
+
+    if(empty($meno)){
+        $error = "Nezadali ste meno";
+    }
+
+    if(empty($email)){
+        $error = "Nezadali ste email";
+    }
+
+    if(empty($heslo)){
+        $error = "Nezadali ste heslo";
     }
 }
 
