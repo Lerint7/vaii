@@ -4,6 +4,8 @@ if (session_status() == PHP_SESSION_NONE ) {
 }
 require_once "pripojenie.php";
 ?>
+<script src="funkcie.js"></script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,9 +44,9 @@ require_once "pripojenie.php";
         </div>
     </div>
 </div>
-<div id = "clankyTelo">
+<div id = "kategorieTelo">
     <?php
-        $insert = $pripojenie->prepare("SELECT id,nazovKategorie,popisKategorie FROM categories ORDER BY nazovKategorie ASC");
+        $insert = $pripojenie->prepare("SELECT idCategories,nazovKategorie,popisKategorie FROM categories ORDER BY nazovKategorie ASC");
         $insert->execute();
         $insert->store_result();
         $pocetRiadkov = $insert->num_rows();
@@ -52,17 +54,53 @@ require_once "pripojenie.php";
         if ($pocetRiadkov > 0) {
             for ($i = 1;$i <= $pocetRiadkov; $i++) {
                 $insert->bind_result($id, $nazov, $popis);
+                $idPomocna = $_GET['id'];
                 $insert->fetch();
-                $kategorie .= "<a href = '#' class = 'kategorie_odkazy'>".$nazov." </a>";
+                $kategorie .= "<a href='/forum.php?id=" . $id . "' class = 'kategorie_odkazy'>".$nazov." </a>";
             }
+            $kategorie .= "<a href='/forum.php' class = 'topicy_odkazy'>" . "Všetky topicy" . " </a>";
             echo $kategorie;
         } else {
             echo "<p> Nie sú žiadne kategórie </p>";
         }
     ?>
-</script>
 </div>
+    <div id = "topicyTelo">
+        <?php
+        if(isset($_GET['id'])) {
+            $insertTopic = $pripojenie->prepare("SELECT idTopics,nazovTopicu,popisTopicu, datumPridania 
+                                        FROM topics where idCategories = '$idPomocna'  ORDER BY datumPridania");
+            $insertTopic->execute();
+            $insertTopic->store_result();
+            $pocetRiadkov = $insertTopic->num_rows();
+            $topicy = "";
+            if ($pocetRiadkov > 0) {
+                for ($i = 1; $i <= $pocetRiadkov; $i++) {
+                    $insertTopic->bind_result($idT, $nazovT, $popisT, $datum);
+                    $insertTopic->fetch();
+                    $topicy .= "<a href='#' class = 'topicy_odkazy'>" . $nazovT . " </a>";
+                }
 
+                echo $topicy;
+            }
+        } else {
+            $insertTopic2 = $pripojenie->prepare("SELECT idTopics,nazovTopicu,popisTopicu, datumPridania FROM topics ORDER BY datumPridania");
+            $insertTopic2->execute();
+            $insertTopic2->store_result();
+            $pocetRiadkov = $insertTopic2->num_rows();
+            $topicy = "";
+            if ($pocetRiadkov > 0) {
+                for ($i = 1; $i <= $pocetRiadkov; $i++) {
+                    $insertTopic2->bind_result($idT, $nazovT, $popisT, $datum);
+                    $insertTopic2->fetch();
+                    $topicy .= "<a href='#' class = 'topicy_odkazy'>" . $nazovT . " </a>";
+                }
+
+                echo $topicy;
+            }
+        }
+        ?>
+    </div>
 
 <!--<footer>
     <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
