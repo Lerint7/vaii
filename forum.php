@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE ) {
     session_start();
 }
-require "pripojenie.php";
+require_once "pripojenie.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,16 +42,23 @@ require "pripojenie.php";
         </div>
     </div>
 </div>
-<div id = "kategoria" style="width: auto">
-        <button>Všetky</button>
-        <button>Kniha prvá</button>
-        <button>Kniha druhá</button>
-        <button>Kniha tretia</button>
-        <button>Ostatné</button>
-</div>
 <div id = "clankyTelo">
     <?php
-
+        $insert = $pripojenie->prepare("SELECT id,nazovKategorie,popisKategorie FROM categories ORDER BY nazovKategorie ASC");
+        $insert->execute();
+        $insert->store_result();
+        $pocetRiadkov = $insert->num_rows();
+        $kategorie = "";
+        if ($pocetRiadkov > 0) {
+            for ($i = 1;$i <= $pocetRiadkov; $i++) {
+                $insert->bind_result($id, $nazov, $popis);
+                $insert->fetch();
+                $kategorie .= "<a href = '#' class = 'kategorie_odkazy'>".$nazov." </a>";
+            }
+            echo $kategorie;
+        } else {
+            echo "<p> Nie sú žiadne kategórie </p>";
+        }
     ?>
 </script>
 </div>

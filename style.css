@@ -404,21 +404,29 @@ div#kategoria {
 #button:hover {
     background-color: #55ACEE;
 }
-div#kategoria button {
+
+div#clankyTelo {
+    top: 35%;
+    width: 20%;
+    position: absolute;
+    left: 15%;
+}
+
+.kategorie_odkazy {
     background-color: #55ACEE;
     border: 2px solid #32508E;
     color: white;
     padding: 10px 24px;
     cursor: pointer;
     display: block;
-    width: 100%;
     font-weight: bold;
-    font-size: 12pt;
+    font-size: 14pt;
+    height: 30px;
+    text-align: -webkit-center;
 }
-div#kategoria :hover {
+.kategorie_odkazy:hover {
     background-color: #32508E;
 }
-
 
 /*930 šírka*/
 @media screen and (max-width: 930px) {
