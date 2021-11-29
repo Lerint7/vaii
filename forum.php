@@ -37,7 +37,7 @@ require_once "pripojenie.php";
 </header>
 <div id = obrazokForum>
     <div id = newForum>
-        <button id = button type=“funkciaNewForum”>New Forum</button>
+        <a href="newTopic.php" id = button type=“funkciaNewForum”>New Topic</a>
         <div id = textForum>
             <a style="font-size: 20pt"> General discussion </a>
             <a style="font-size: 14pt"> Post your general discussion topics here</a>

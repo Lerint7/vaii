@@ -400,7 +400,10 @@ div#kategoria {
     border: 3px solid #55ACEE;
     width: 15%;
     height: 30%;
+    font-size: 16pt;
+    text-align: center;
 }
+
 #button:hover {
     background-color: #55ACEE;
 }
@@ -448,6 +451,27 @@ div#topicyTelo {
 }
 .topicy_odkazy:hover {
     background-color: #32508E;
+}
+/*newTopic*/
+div#myDropdown {
+    position: relative;
+    top: 20%;
+    left: 20%;
+    right: 20%;
+}
+
+div#myDropdown select {
+    font-size: 15pt;
+    color: white;
+    width: 60%;
+    margin-bottom: 20px;
+    background-color: darkgray;
+    height: 50px;
+}
+div#teloClanku {
+    top: 20%;
+    position: relative;
+    left: 12%;
 }
 
 /*930 šírka*/
