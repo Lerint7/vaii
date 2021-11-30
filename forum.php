@@ -37,7 +37,7 @@ require_once "pripojenie.php";
 </header>
 <div id = obrazokForum>
     <div id = newForum>
-        <a href="newTopic.php" id = button type=“funkciaNewForum” >New Topic</a>
+        <a href="newPost.php" id = button type=“funkciaNewForum” >New Topic</a>
         <div id = textForum>
             <a style="font-size: 20pt"> General discussion </a>
             <a style="font-size: 14pt"> Post your general discussion topics here</a>
@@ -82,7 +82,7 @@ require_once "pripojenie.php";
             for ($i = 1; $i <= $pocetRiadkov; $i++) {
                 $insertTopic->bind_result($idT, $nazovT, $popisT, $datum);
                 $insertTopic->fetch();
-                $topicy .= "<a href='#' class = 'topicy_odkazy'>" . $nazovT . " </a>";
+                $topicy .= "<a href='/topic.php?id=" . $idT . "' class = 'topicy_odkazy'>" . $nazovT . " </a>";
             }
 
             echo $topicy;

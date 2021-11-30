@@ -464,6 +464,7 @@ div#topicyTelo {
 .topicy_odkazy:hover {
     background-color: var(--ruzova);
 }
+
 /*newTopic*/
 div#myDropdown {
     display: inline;
@@ -487,6 +488,36 @@ div#teloClanku {
     position: relative;
     left: 12%;
 }
+
+.posty_odkazy {
+    background-color: var(--modra);
+    border: 2px solid var(--tmavoModra);
+    color: var(--biela);
+    padding: 10px 24px;
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    font-size: 14pt;
+    height: 30px;
+    text-align: -webkit-center;
+}
+.posty_odkazy:hover {
+    background-color: var(--ruzova);
+}
+
+div#post {
+    width: 76%;
+    height: 30%;
+    position: fixed;
+}
+
+div#postyTelo {
+    top: 20%;
+    width: 80%;
+    position: absolute;
+    left: 10%;
+}
+
 
 /*930 šírka*/
 @media screen and (max-width: 930px) {
