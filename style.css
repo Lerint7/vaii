@@ -467,8 +467,8 @@ div#topicyTelo {
 /*newTopic*/
 div#myDropdown {
     display: inline;
-    position: relative;
-    top: 20%;
+    position: fixed;
+    top: 10%;
     left: 20%;
     right: 20%;
     width: 100%;

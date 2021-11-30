@@ -7,9 +7,8 @@ if (!isset($_SESSION['menoLogin'])) {
     die;
 }
 require_once "pripojenie.php";
+require_once "insertPost.php";
 ?>
-
-<script src="funkcie.js"></script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,8 +39,10 @@ require_once "pripojenie.php";
             </ul>
         </nav>
     </header>
+
+    <form method="post" enctype="application/x-www-form-urlencoded" action="">
     <div id="myDropdown">
-        <select>
+        <select name = "nazovKategoria">
             <option value="Select">Select</option>
             <?php
             $insert = $pripojenie->prepare("SELECT nazovKategorie FROM categories ORDER BY nazovKategorie ASC");
@@ -49,36 +50,40 @@ require_once "pripojenie.php";
             $insert->store_result();
             $pocetRiadkov = $insert->num_rows();
             for ($i = 1;$i <= $pocetRiadkov; $i++) {
-                $insert->bind_result($nazov);
+                $insert->bind_result($nazovKategoria);
                 $idPomocna = $_GET['id'];
                 $insert->fetch();
-                echo "<option value='Select'>".$nazov."</option>";
+                echo "<option value='$nazovKategoria'>".$nazovKategoria."</option>";
             }
             ?>
         </select>
-        <select>
+        <select name = "nazovTopic">
             <option value="Select">Select</option>
             <?php
-            $insert = $pripojenie->prepare("SELECT nazovTopicu FROM topics ORDER BY nazovTopicu ASC");
-            $insert->execute();
-            $insert->store_result();
-            $pocetRiadkov = $insert->num_rows();
+            $insert1 = $pripojenie->prepare("SELECT nazovTopicu FROM topics ORDER BY nazovTopicu ASC");
+            $insert1->execute();
+            $insert1->store_result();
+            $pocetRiadkov = $insert1->num_rows();
             for ($i = 1;$i <= $pocetRiadkov; $i++) {
-                $insert->bind_result($nazov);
+                $insert1->bind_result($nazovTopic);
                 $idPomocna = $_GET['id'];
-                $insert->fetch();
-                echo "<option value='Select'>".$nazov."</option>";
+                $insert1->fetch();
+                echo "<option value='$nazovTopic'>".$nazovTopic."</option>";
             }
             ?>
         </select>
         <input type="text" name="nazovLCanku" placeholder="Názov článku" required style="width: 60%;">
     </div>
-    <div id = teloClanku>
-        <textarea rows="5" style="margin-left: 8%; width: 60%; height: 40%;"> </textarea>
+
+    <div id = "teloClanku">
+        <textarea required name="obsah" rows="5" style="position: fixed;top: 35%;margin-left: -1%;width: 60%;height: 40%;"> </textarea>
             <br><br>
-        <input type="submit" value="Submit" style="width: 80%;height: 30px; font-size: 14pt;">
+        <input type="submit" name = "submit"  style=" position:fixed;height: 30px; font-size: 14pt;top: 80%;width: 57%;">
     </div>
-    <footer style= "top: 21.7vh;">
+
+    </form>
+
+    <footer style= "top: 84.7vh;">
         <p style="text-align: right; color: var(--biela)"> ©2021 Author: Andrea Meleková</p>
         <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
     </footer>
