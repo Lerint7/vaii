@@ -22,19 +22,19 @@ require_once "pripojenie.php";
     <title>Title</title>
 </head>
 
-<body style="background-color: #a9927d">
-<div style="left: 12%;right: 12%;position: relative;background-color: maroon;width: 76%;height: 95vh;border-radius: 10%;">
-    <header>
+<body style="background-color : var(--tmava)">
+<div style="left: 12%;right: 12%;position: relative;background-color: var(--svetloModra);width: 76%;height: 95vh">
+    <header style="background-color: var(--tmavoModra)">
         <nav id="menu">
             <ul>
                 <!-- a = odkaz na čokolvek,premenná-->
-                <li><a href="forum.php">Fórum</a></li>
-                <li><a href="index.php">Domov</a></li>
+                <li><a style="color: var(--modra)" href="forum.php">Fórum</a></li>
+                <li><a style="color: var(--modra)" href="index.php">Domov</a></li>
                 <?php
                 if(isset($_SESSION['menoLogin'])) {
-                    echo  '<li><a href="userPage.php">Profil</a></li>';
+                    echo  '<li><a style="color: var(--modra)"href="userPage.php">Profil</a></li>';
                 } else {
-                    echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
+                    echo '<li><a style="color: var(--modra)" href="registraciaStranka.php">Registracia</a></li>';
                 }
                 ?>
             </ul>
@@ -79,7 +79,7 @@ require_once "pripojenie.php";
         <input type="submit" value="Submit" style="width: 80%;height: 30px; font-size: 14pt;">
     </div>
     <footer style= "top: 21.7vh;">
-        <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
+        <p style="text-align: right; color: var(--biela)"> ©2021 Author: Andrea Meleková</p>
         <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
     </footer>
 

@@ -4,7 +4,15 @@
     margin: 0;
     padding: 0;
 }
+:root {
+    --tmava: #1C1F23;
+    --tmavoModra: #23374C;
+    --modra: #3C9CBA;
+    --svetloModra : #67A2B9;
+    --ruzova : #ECD0C1;
+    --biela : #f2f4f3;
 
+}
 header {
     width: 100%;
     height: 80px;
@@ -16,7 +24,6 @@ header {
 }
 div#logo{
     position: relative;
-    background-color: aliceblue;
     top: 0;
     width: 80px;
     height: 80px;
@@ -42,13 +49,13 @@ nav#menu ul li {
 }
 nav#menu ul li a {
     text-decoration: none;
-    color: #f2f4f3;
+    color: var(--svetloModra);
     font-weight:bold ;
     font-size: larger;
 
 }
 nav#menu ul li a:hover {
-    color: #a9927d;
+    color: var(--ruzova);
 }
 svg {
     display: inline-block;
@@ -59,10 +66,11 @@ svg {
 }
 div#citat {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    color: #f2f4f3;
+    color: var(--biela);
     font-weight: bold;
+    top: 30%;
+    left: 10%;
+    width: 75%;
 }
 
 div#citat p {
@@ -77,14 +85,14 @@ div#citat span {
 div#knihyPozadie {
     position: relative;
     top: -5px;
-    background: #a9927d ;
+    background: var(--tmavoModra) ;
 }
 
 div#uvodnytext {
     left: 5%;
     right: 5%;
     position: absolute;
-    color: #f2f4f3;
+    color: var(--biela);
     font-weight: bold;
     z-index: 1;
     top: -160px;
@@ -115,7 +123,7 @@ div#ObrazkyKnih {
 div#pozadieHome {
     width: 100%;
     height: 120vh;
-    background: url("https://preview.redd.it/exrqtbmul1d61.jpg?auto=webp&s=b5ed64b43fae7ba4dd8783a7e39a5fd8539fcbc8");
+    background: url("https://cdn.wallpapersafari.com/99/4/L45KNm.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -134,7 +142,7 @@ div#pozadieHome {
 }
 
 .text.active {
-    color: #a9927d;
+    color: var(--ruzova);
     display: block;
 }
 .obrazkyKnihOdkaz {
@@ -158,13 +166,13 @@ div#stredStranky {
 }
 
 .teloClanku {
-    background: #5e503f ;
+    background: var(--tmavoModra) ;
     width: 100%;
     height: 110vh;
 }
 
 .vyhladavaciPanel {
-    background: rgba(165, 71, 27, 0.47);
+    background: rgba(186, 109, 89, 0.7);
     width: 250px;
     height: 800px;
     margin-left: auto;
@@ -180,13 +188,13 @@ div#stredStranky {
     padding-top: 10%;
     font-size: 20pt;
     font-weight: bold;
-    color: #f2f4f3;
+    color: var(--biela);
     text-align: center;
 }
 
 .panelText span {
     font-size: 13pt;
-    color: #f2f4f3;
+    color: var(--biela);
     flex-wrap: wrap;
     padding-left: 5%;
 }
@@ -201,13 +209,14 @@ div#stredStranky {
 }
 
 .textClanku p {
-    color: #f2f4f3;
+    color: var(--biela);
     text-indent: 20px;
 }
 
-/*diskusia*/
+/*registracnaStranka*/
 .login {
-    background: #a9927d;
+    background: var(--modra);
+    border: 3px solid var(--tmavoModra);
     position: absolute;
     width: 205px;
     right: -30vw;
@@ -220,9 +229,9 @@ div#stredStranky {
     position: absolute;
     width: 600px;
     height: 400px;
-    background: #a9927d;
+    background: var(--ruzova);
     margin-top: 150px;
-    right: 0%;
+    right: 7%;
 }
 
 div#RegistraciaMojeUdaje {
@@ -257,8 +266,8 @@ input[type="text"], input[type="password"] {
 input[type="submit"], input[type="registracia"] {
     width: 200px;
     height: 20px;
-    background: #A5471B;
-    color: #f2f4f3;
+    background: var(--tmavoModra);
+    color: var(--biela);
     cursor: pointer;
     text-align: center;
 }
@@ -266,7 +275,7 @@ input[type="submit"], input[type="registracia"] {
 button.RegistraciaS {
     width: 220px;
     height: 40px;
-    color: #f2f4f3;
+    color: var(--biela);
     margin-bottom: 10px;
     cursor: pointer;
 }
@@ -285,12 +294,13 @@ footer {
     bottom: 0;
     width: 100%;
     height: 40px;
-    background: #a9927d;
+    background: var(--tmavoModra);
 }
+
  /*loginPage*/
 
 div#profil {
-    background-color: #f2f4f3;
+    background-color: var(--biela);
     left: 10%;
     right: 10%;
     width: 80%;
@@ -300,7 +310,7 @@ div#profil {
 }
 
 div#profiloveOkno {
-    background-color: #a9927d;
+    background-color: var(--ruzova);
     left: 5%;
     top: 5%;
     position: absolute;
@@ -312,10 +322,10 @@ div#profiloveUdaje {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #f2f4f3;
+    color: var(--biela);
     font-size: 20pt;
     font-weight: bold;
-    background-color: #a9927d;
+    background-color: var(--ruzova);
     right: 5%;
     top: 5%;
     position: absolute;
@@ -331,7 +341,7 @@ div#profilFoto {
     width: 14vw;
     height: 14vw;
     position: relative;
-    background-color: maroon;
+    background-color: var(--tmavoModra);
     background-position: 50% 50%;
     background-size: cover;
     border-radius: 50%;
@@ -343,8 +353,8 @@ div#menoLogin {
     width: 80%;
     height: 15%;
     position: relative;
-    background-color: maroon;
-    color: white;
+    background-color: var(--tmavoModra);
+    color: var(--biela);
     font-size: 20pt;
     font-weight: bold;
     text-align: center;
@@ -358,8 +368,8 @@ div#main-div {
 div#odhlasenie input[type="submit"] {
     width: 200px;
     height: auto;
-    background: #A5471B;
-    color: #f2f4f3;
+    background: var(--tmavoModra);
+    color: var(--biela);
     cursor: pointer;
     text-align: center;
     font-size: 15pt;
@@ -369,12 +379,14 @@ div#odhlasenie input[type="submit"] {
 div#obrazokForum {
     width: 70%;
     height: 120px;
-    background-color: #A5471B;
+    background-image: url("https://illustratorsjournal.files.wordpress.com/2012/07/dragon__s_fury_by_benwootten-d574oag.jpg");
     position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
     top: 80px;
     left: 15%;
     right: 15%;
-    color: white;
+    color: var(--biela);
     font-weight: bold;
 }
 div#textForum {
@@ -385,7 +397,7 @@ div#textForum {
 }
 
 div#kategoria {
-    color: white;
+    color: var(--biela);
     position: absolute;
     top: 35%;
     left: 15%;
@@ -396,8 +408,8 @@ div#kategoria {
     position: absolute;
     border-radius: 25%;
     background-color: transparent;
-    color: white;
-    border: 3px solid #55ACEE;
+    color: var(--biela);
+    border: 3px solid var(--tmavoModra);
     width: 15%;
     height: 30%;
     font-size: 16pt;
@@ -405,7 +417,7 @@ div#kategoria {
 }
 
 #button:hover {
-    background-color: #55ACEE;
+    background-color: var(--modra);
 }
 
 div#kategorieTelo {
@@ -422,9 +434,9 @@ div#topicyTelo {
 }
 
 .kategorie_odkazy {
-    background-color: #55ACEE;
-    border: 2px solid #32508E;
-    color: white;
+    background-color: var(--modra);
+    border: 2px solid var(--tmavoModra);
+    color: var(--biela);
     padding: 10px 24px;
     cursor: pointer;
     display: block;
@@ -434,13 +446,13 @@ div#topicyTelo {
     text-align: -webkit-center;
 }
 .kategorie_odkazy:hover {
-    background-color: #32508E;
+    background-color: var(--ruzova);
 }
 
 .topicy_odkazy {
-    background-color: #55ACEE;
-    border: 2px solid #32508E;
-    color: white;
+    background-color: var(--modra);
+    border: 2px solid var(--tmavoModra);
+    color: var(--biela);
     padding: 10px 24px;
     cursor: pointer;
     display: block;
@@ -450,7 +462,7 @@ div#topicyTelo {
     text-align: -webkit-center;
 }
 .topicy_odkazy:hover {
-    background-color: #32508E;
+    background-color: var(--ruzova);
 }
 /*newTopic*/
 div#myDropdown {
@@ -464,7 +476,7 @@ div#myDropdown {
 
 div#myDropdown select {
     font-size: 15pt;
-    color: white;
+    color: var(--biela);
     width: 60%;
     margin-bottom: 20px;
     background-color: darkgray;
@@ -475,8 +487,6 @@ div#teloClanku {
     position: relative;
     left: 12%;
 }
-
-
 
 /*930 šírka*/
 @media screen and (max-width: 930px) {

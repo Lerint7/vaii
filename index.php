@@ -52,7 +52,7 @@ if (session_status() == PHP_SESSION_NONE ) {
          preserveAspectRatio="xMinYMin meet">
         <path d="M0, 40 C75, 150 350,
                 0 500, 100 L500, 0 L0, 0 Z"
-              style="stroke:none; fill:#a9927d ">
+              style="stroke:none; fill:var(--tmavoModra) ">
         </path>
     </svg>
     </div>

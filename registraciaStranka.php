@@ -9,21 +9,21 @@
     <title>Title</title>
 </head>
 
-<body style="background-color:#5e503f ">
+<body style="background-color:var(--tmavoModra) ">
 
-<header style="background: #a9927d">
+<header style="background: var(--modra)">
     <div id="logo"><img src="https://key0.cc/images/small/105836_69e02ad11d1a888cd38319316b587bfd.png" alt = "logo stránky, čo je otvorená kniha" width="80" height="80">
         </div>
-        <nav id="menu" style="background-color: #A5471B;">
+        <nav id="menu" style="background-color: var(--modra);">
             <ul>
                 <!-- a = odkaz na čokolvek,premenná-->
-                <li><a href="forum.php">Fórum</a></li>
-                <li><a href="index.php">Domov</a></li>
+                <li><a style="color: var(--biela)" href="forum.php">Fórum</a></li>
+                <li><a style="color: var(--biela)"href="index.php">Domov</a></li>
                 <?php
                 if(isset($_SESSION['menoLogin'])) {
-                    echo  '<li><a href="userPage.php">Profil</a></li>';
+                    echo  '<li><a style="color: var(--biela)" href="userPage.php">Profil</a></li>';
                 } else {
-                    echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
+                    echo '<li><a style="color: var(--biela)" href="registraciaStranka.php">Registracia</a></li>';
                 }
                 ?>
             </ul>
@@ -40,7 +40,7 @@
 <div id = "registracia">
     <form method="post" enctype="application/x-www-form-urlencoded" action="registraciaStranka.php">
     <div id = "RegistraciaMojeUdaje">
-        <p style="color: #f2f4f3; font-weight: bold; font-size: 16pt">Prihlasenie</p>
+        <p style="color: var(--biela); font-weight: bold; font-size: 16pt">Prihlasenie</p>
          <?php echo $error; ?>
         <input type="text" name="meno" placeholder="Užívateľ" required minlength="6">
         <input type="text" name="email" placeholder="E-mailová adresa" required >
@@ -57,12 +57,12 @@
 </div>
 
 <div id = "diskusiaText">
-    <span style="font-size: 20pt; color: #f2f4f3 ; background-color: #A5471B">
+    <span style="font-size: 20pt; color:var(--biela) ; background-color: var(--svetloModra)">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien arcu, ultrices et convallis nec, molestie id ante. Maecenas gravida, massa sit amet tristique scelerisque, dolor lorem mattis massa, non maximus felis enim eget magna. Nunc a rutrum neque. Ut sit amet bibendum arcu. Sed quis arcu nulla. Proin volutpat, nunc eu placerat lacinia, lectus mi maximus diam, ut malesuada mi enim eget dui. Donec ornare interdum lectus, sit amet eleifend sapien interdum non. Vestibulum sit amet mauris volutpat, fringilla nisi sed, interdum elit. Proin vehicula elementum felis, at dapibus leo ornare quis. Morbi sed magna eget elit porta hendrerit. Vestibulum ullamcorper iaculis iaculis. Quisque vel ipsum dapibus eros aliquet molestie. Mauris quis facilisis odio, vitae fermentum est. Proin volutpat metus ac est porttitor accumsan.
     </span>
 </div>
 </div>
-<footer style="position: fixed">
+<footer style="position: fixed;color: var(--biela)">
     <p> ©2021 Author: Andrea Meleková</p>
     <p><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
 </footer>

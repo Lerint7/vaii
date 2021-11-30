@@ -9,9 +9,9 @@
     <title>Title</title>
 </head>
 
-<body style="background-color: #a9927d ">
-<header>
-        <nav id="menu">
+<body style="background-color: var(--tmavoModra) ">
+<header >
+        <nav  id="menu">
             <ul>
                 <!-- a = odkaz na čokolvek,premenná-->
                 <li><a href="forum.php">Fórum</a></li>
@@ -79,7 +79,7 @@
     }
 </script>
 
-<footer style="top: 250px">
+<footer >
     <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
     <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
 </footer>

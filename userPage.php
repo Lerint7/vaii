@@ -76,11 +76,11 @@ if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) 
     <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
     <title>Title</title>
 </head>
-<body style="background-color: lightgrey ">
+<body style="background-color:var(--tmavoModra) ">
 <header>
     <nav id="menu">
         <ul>
-            <li><a href="forum.php">Fórum</a></li>
+            <li><a href="forum.php">Článok</a></li>
             <li><a href="index.php">Domov</a></li>
             <?php
             if(isset($_SESSION['menoLogin'])) {

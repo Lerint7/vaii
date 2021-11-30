@@ -17,8 +17,8 @@ require_once "pripojenie.php";
     <title>Title</title>
 </head>
 
-<body style="background-color: #a9927d">
-<div style="left: 10%;right: 10%;position: relative;background-color: maroon;width: 80%;height: 100vh;border-radius: 10%;">
+<body style="background-color: var(--svetloModra)">
+<div style="left: 10%;right: 10%;position: relative;background-color: var(--tmavoModra);width: 80%;height: 100vh;border-radius: 10%;">
 <header>
     <nav id="menu">
         <ul>
@@ -37,7 +37,7 @@ require_once "pripojenie.php";
 </header>
 <div id = obrazokForum>
     <div id = newForum>
-        <a href="newTopic.php" id = button type=“funkciaNewForum”>New Topic</a>
+        <a href="newTopic.php" id = button type=“funkciaNewForum” >New Topic</a>
         <div id = textForum>
             <a style="font-size: 20pt"> General discussion </a>
             <a style="font-size: 14pt"> Post your general discussion topics here</a>
@@ -90,7 +90,7 @@ require_once "pripojenie.php";
         ?>
     </div>
 
-<footer style= "top: 94.7vh;">
+<footer style= "top: 94.7vh;background-color: var(--svetloModra) ">
     <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
     <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
 </footer>
