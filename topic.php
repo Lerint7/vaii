@@ -21,6 +21,7 @@ require_once "pripojenie.php";
 </head>
 
 <body style="background-color : var(--tmava)">
+<button onclick="history.back();" style = "position: fixed;z-index: 10;top: 0;right: 0;">Previous</button>
 <div style="left: 12%;right: 12%;position: relative;background-color: var(--svetloModra);width: 76%;height: 100vh">
     <header style="background-color: var(--tmavoModra)">
         <nav id="menu">
@@ -55,7 +56,7 @@ require_once "pripojenie.php";
             }
             echo $posty;
         } else {
-            echo "<p> Nie sú žiadne posty </p>";
+            echo "<p style='font-weight: bold;text-align: center;font-size: 25pt;color: var(--biela);'> V tomto topicu nie sú žiadne posty </p>";
         }
         ?>
     </div>
