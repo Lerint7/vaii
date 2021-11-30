@@ -25,9 +25,6 @@
                 ?>
             </ul>
         </nav>
-   <!-- <div id = "vyhladavac">
-        <input type="text" class="searchTerm" placeholder="Čo chcete nájsť??">
-    </div>-->
 </header>
 <main style="width: auto; min-height: 100px; overflow: hidden;" >
     <div style="background-image: url('https://i.ibb.co/6nV300V/pozadie1.png');

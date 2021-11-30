@@ -18,7 +18,7 @@ require_once "pripojenie.php";
 </head>
 
 <body style="background-color: #a9927d">
-<div style="background-color: maroon; width: 80% ;height: 100vh; margin-right: 10%;margin-left: 10%; margin-top: 25px; border-radius: 10%">
+<div style="left: 12%;right: 12%;position: relative;background-color: maroon;width: 76%;height: 95vh;border-radius: 10%;">
     <header>
         <nav id="menu">
             <ul>
@@ -63,11 +63,11 @@ require_once "pripojenie.php";
             <br><br>
         <input type="submit" value="Submit" style="width: 80%;height: 30px; font-size: 14pt;">
     </div>
-    <!--<footer>
+    <footer style= "top: 21.7vh;">
         <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
         <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
     </footer>
-    -->
+
 </div>
 </body>
 </html>

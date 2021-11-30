@@ -18,7 +18,7 @@ require_once "pripojenie.php";
 </head>
 
 <body style="background-color: #a9927d">
-<div style="background-color: maroon; width: 80% ;height: 100vh; margin-right: 10%;margin-left: 10%; margin-top: 25px; border-radius: 10%">
+<div style="left: 10%;right: 10%;position: relative;background-color: maroon;width: 80%;height: 100vh;border-radius: 10%;">
 <header>
     <nav id="menu">
         <ul>
@@ -44,6 +44,7 @@ require_once "pripojenie.php";
         </div>
     </div>
 </div>
+
 <div id = "kategorieTelo">
     <?php
         $insert = $pripojenie->prepare("SELECT idCategories,nazovKategorie,popisKategorie FROM categories ORDER BY nazovKategorie ASC");
@@ -70,43 +71,30 @@ require_once "pripojenie.php";
         if(isset($_GET['id'])) {
             $insertTopic = $pripojenie->prepare("SELECT idTopics,nazovTopicu,popisTopicu, datumPridania 
                                         FROM topics where idCategories = '$idPomocna'  ORDER BY datumPridania");
-            $insertTopic->execute();
-            $insertTopic->store_result();
-            $pocetRiadkov = $insertTopic->num_rows();
-            $topicy = "";
-            if ($pocetRiadkov > 0) {
-                for ($i = 1; $i <= $pocetRiadkov; $i++) {
-                    $insertTopic->bind_result($idT, $nazovT, $popisT, $datum);
-                    $insertTopic->fetch();
-                    $topicy .= "<a href='#' class = 'topicy_odkazy'>" . $nazovT . " </a>";
-                }
-
-                echo $topicy;
-            }
         } else {
-            $insertTopic2 = $pripojenie->prepare("SELECT idTopics,nazovTopicu,popisTopicu, datumPridania FROM topics ORDER BY datumPridania");
-            $insertTopic2->execute();
-            $insertTopic2->store_result();
-            $pocetRiadkov = $insertTopic2->num_rows();
-            $topicy = "";
-            if ($pocetRiadkov > 0) {
-                for ($i = 1; $i <= $pocetRiadkov; $i++) {
-                    $insertTopic2->bind_result($idT, $nazovT, $popisT, $datum);
-                    $insertTopic2->fetch();
-                    $topicy .= "<a href='#' class = 'topicy_odkazy'>" . $nazovT . " </a>";
-                }
-
-                echo $topicy;
+            $insertTopic = $pripojenie->prepare("SELECT idTopics,nazovTopicu,popisTopicu, datumPridania FROM topics ORDER BY datumPridania");
+        }
+        $insertTopic->execute();
+        $insertTopic->store_result();
+        $pocetRiadkov = $insertTopic->num_rows();
+        $topicy = "";
+        if ($pocetRiadkov > 0) {
+            for ($i = 1; $i <= $pocetRiadkov; $i++) {
+                $insertTopic->bind_result($idT, $nazovT, $popisT, $datum);
+                $insertTopic->fetch();
+                $topicy .= "<a href='#' class = 'topicy_odkazy'>" . $nazovT . " </a>";
             }
+
+            echo $topicy;
         }
         ?>
     </div>
 
-<!--<footer>
+<footer style= "top: 94.7vh;">
     <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
     <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
 </footer>
--->
+
 </div>
 </body>
 </html>
