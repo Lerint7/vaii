@@ -2,8 +2,13 @@
 if (session_status() == PHP_SESSION_NONE ) {
     session_start();
 }
+if (!isset($_SESSION['menoLogin'])) {
+    header("Location:registraciaStranka.php");
+    die;
+}
 require_once "pripojenie.php";
 ?>
+
 <script src="funkcie.js"></script>
 
 <!DOCTYPE html>
@@ -37,26 +42,36 @@ require_once "pripojenie.php";
     </header>
     <div id="myDropdown">
         <select>
-            <option value="Select">Select</option>}
-            <option value="Vineet">Vineet Saini</option>
-            <option value="Sumit">Sumit Sharma</option>
-            <option value="Dorilal">Dorilal Agarwal</option>
-            <option value="Omveer">Omveer Singh</option>
+            <option value="Select">Select</option>
+            <?php
+            $insert = $pripojenie->prepare("SELECT nazovKategorie FROM categories ORDER BY nazovKategorie ASC");
+            $insert->execute();
+            $insert->store_result();
+            $pocetRiadkov = $insert->num_rows();
+            for ($i = 1;$i <= $pocetRiadkov; $i++) {
+                $insert->bind_result($nazov);
+                $idPomocna = $_GET['id'];
+                $insert->fetch();
+                echo "<option value='Select'>".$nazov."</option>";
+            }
+            ?>
         </select>
         <select>
-            <option value="Select">Select</option>}
-            <option value="Vineet">Vineet Saini</option>
-            <option value="Sumit">Sumit Sharma</option>
-            <option value="Dorilal">Dorilal Agarwal</option>
-            <option value="Omveer">Omveer Singh</option>
+            <option value="Select">Select</option>
+            <?php
+            $insert = $pripojenie->prepare("SELECT nazovTopicu FROM topics ORDER BY nazovTopicu ASC");
+            $insert->execute();
+            $insert->store_result();
+            $pocetRiadkov = $insert->num_rows();
+            for ($i = 1;$i <= $pocetRiadkov; $i++) {
+                $insert->bind_result($nazov);
+                $idPomocna = $_GET['id'];
+                $insert->fetch();
+                echo "<option value='Select'>".$nazov."</option>";
+            }
+            ?>
         </select>
-        <select>
-            <option value="Select">Select</option>}
-            <option value="Vineet">Vineet Saini</option>
-            <option value="Sumit">Sumit Sharma</option>
-            <option value="Dorilal">Dorilal Agarwal</option>
-            <option value="Omveer">Omveer Singh</option>
-        </select>
+        <input type="text" name="nazovLCanku" placeholder="Názov článku" required style="width: 60%;">
     </div>
     <div id = teloClanku>
         <textarea rows="5" style="margin-left: 8%; width: 60%; height: 40%;"> </textarea>

@@ -80,7 +80,7 @@ if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) 
 <header>
     <nav id="menu">
         <ul>
-            <li><a href="forum.php">Článok</a></li>
+            <li><a href="forum.php">Fórum</a></li>
             <li><a href="index.php">Domov</a></li>
             <?php
             if(isset($_SESSION['menoLogin'])) {
