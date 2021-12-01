@@ -508,6 +508,13 @@ div#postyTelo {
     left: 15%;
 }
 
+.strenght {
+    width: 25%;
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    bottom: 5px;
+}
 
 /*930 šírka*/
 @media screen and (max-width: 930px) {

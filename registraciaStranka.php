@@ -1,5 +1,6 @@
 <?php include('registracia.php') ;
 require_once "head.php"?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -17,6 +18,7 @@ require_once "head.php"?>
                 <input type="text" name="menoLogin" placeholder="meno" required>
                 <input type="password" name="hesloLogin" placeholder="heslo" required>
                 <input type="submit" value="Prihlásenie" name = "login">
+
             </div>
             </form>
 <div id="posunSirkaScreenu">
@@ -27,8 +29,14 @@ require_once "head.php"?>
          <?php echo $error; ?>
         <input type="text" name="meno" placeholder="Užívateľ" required minlength="6">
         <input type="text" name="email" placeholder="E-mailová adresa" required >
-        <input type="password" name="heslo" placeholder="Heslo" required minlength="6">
-        <input type="password" name="hesloOpakovanie" placeholder="Zadajte heslo znova" required>
+
+            <input id ="passwd" oninput="kontrolaSilyHesla()" type="password" name="heslo" placeholder="Heslo" required minlength="6">
+
+        <div id = "barSila" style="width: 80%; height: 30px "></div>
+        <p id = "msg" style="font-weight: bold;font-size: 14pt; color: var(--modra)">Sila hesla</p>
+        <script src="funkcie.js"></script>
+            <input type="password" name="hesloOpakovanie" placeholder="Zadajte heslo znova" required>
+
         <input type="submit" value="REGISTRÁCIA">
     </div>
     <div id ="RegistraciaSocialne">

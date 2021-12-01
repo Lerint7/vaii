@@ -30,8 +30,8 @@ require_once "postZakladnaStranka.php";
         $pouzivatelMeno->bind_result($menoUzivatel);
         $pouzivatelMeno->fetch();
 
-        echo "<span style='position: fixed; font-size: 24pt;font-weight: bold; color: var(--biela); top: 20%; text-align: center; width: inherit'> $nazov </span>";
-        echo "<span style='position: fixed; font-size: 16pt; color: var(--biela); top: 30%; text-align: center; width: inherit'> $popis </span>";
+        echo "<span style='position: fixed; font-size: 24pt;font-weight: bold; color: var(--biela); top: 20%; text-align: center; width: inherit;left: 15%;right: 15%'> $nazov </span>";
+        echo "<span style='position: fixed; font-size: 16pt; color: var(--biela); top: 30%; text-align: center; width: inherit;left: 15%;right: 15%'> $popis </span>";
         echo "<span style='position: fixed; font-size: 16pt; color: var(--biela); top: 15%;left: 13%; width: inherit'> $menoUzivatel </span>";
         ?>
     </div>
