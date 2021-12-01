@@ -3,50 +3,23 @@ if (session_status() == PHP_SESSION_NONE ) {
     session_start();
 }
 require_once "pripojenie.php";
+require_once "head.php";
+require_once "postZakladnaStranka.php"
 ?>
 <script src="funkcie.js"></script>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
-    <title>Title</title>
-</head>
-
-<body style="background-color: var(--svetloModra)">
-<div style="left: 10%;right: 10%;position: relative;background-color: var(--tmavoModra);width: 80%;height: 100vh;border-radius: 10%;">
-<header>
-    <nav id="menu">
-        <ul>
-            <!-- a = odkaz na čokolvek,premenná-->
-            <li><a href="forum.php">Fórum</a></li>
-            <li><a href="index.php">Domov</a></li>
-            <?php
-            if(isset($_SESSION['menoLogin'])) {
-                echo  '<li><a href="userPage.php">Profil</a></li>';
-            } else {
-                echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
-            }
-            ?>
-        </ul>
-    </nav>
-</header>
-<div id = obrazokForum>
-    <div id = newForum>
-        <a href="newPost.php" id = button type=“funkciaNewForum” >New Topic</a>
-        <div id = textForum>
-            <a style="font-size: 20pt"> General discussion </a>
-            <a style="font-size: 14pt"> Post your general discussion topics here</a>
+    <div id = obrazokForum>
+        <div id = newForum>
+            <a href="newPost.php" id = button type=“funkciaNewForum” >New Topic</a>
+            <div id = textForum>
+                <a style="font-size: 20pt"> General discussion </a>
+                <a style="font-size: 14pt"> Post your general discussion topics here</a>
+            </div>
         </div>
     </div>
-</div>
 
-<div id = "kategorieTelo">
-    <?php
+    <div id = "kategorieTelo">
+        <?php
         $insert = $pripojenie->prepare("SELECT idCategories,nazovKategorie,popisKategorie FROM categories ORDER BY nazovKategorie ASC");
         $insert->execute();
         $insert->store_result();
@@ -64,8 +37,8 @@ require_once "pripojenie.php";
         } else {
             echo "<p> Nie sú žiadne kategórie </p>";
         }
-    ?>
-</div>
+        ?>
+    </div>
     <div id = "topicyTelo">
         <?php
         if(isset($_GET['id'])) {
@@ -89,12 +62,3 @@ require_once "pripojenie.php";
         }
         ?>
     </div>
-
-<footer style= "top: 94.7vh;background-color: var(--svetloModra) ">
-    <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
-    <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
-</footer>
-
-</div>
-</body>
-</html>

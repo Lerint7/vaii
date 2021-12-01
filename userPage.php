@@ -1,5 +1,6 @@
 <?php session_start();
 require "pripojenie.php";
+require_once "head.php";
 if (!isset($_SESSION['menoLogin'])) {
     header("Location:registraciaStranka.php");
     die;
@@ -70,28 +71,8 @@ if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) 
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
-    <title>Title</title>
-</head>
 <body style="background-color:var(--tmavoModra) ">
-<header>
-    <nav id="menu">
-        <ul>
-            <li><a href="forum.php">Článok</a></li>
-            <li><a href="index.php">Domov</a></li>
-            <?php
-            if(isset($_SESSION['menoLogin'])) {
-                echo  '<li><a href="userPage.php">Profil</a></li>';
-            } else {
-                echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
-            }
-            ?>
-        </ul>
-    </nav>
-</header>
+
 <div id = "profil" >
     <div id = "profiloveOkno">
         <div id = "profilFoto"></div>

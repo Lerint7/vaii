@@ -219,10 +219,11 @@ div#stredStranky {
     border: 3px solid var(--tmavoModra);
     position: absolute;
     width: 205px;
-    right: -30vw;
+    right: 0;
     top: 0;
     display: flex;
     flex-direction: column;
+    z-index: 10;
 }
 
 #registracia {
@@ -468,11 +469,10 @@ div#topicyTelo {
 /*newTopic*/
 div#myDropdown {
     display: inline;
-    position: fixed;
-    top: 10%;
-    left: 20%;
-    right: 20%;
-    width: 100%;
+    position: absolute;
+    top: 12%;
+    left: 30%;
+    width: 70%;
 }
 
 div#myDropdown select {
@@ -482,11 +482,6 @@ div#myDropdown select {
     margin-bottom: 20px;
     background-color: darkgray;
     height: 50px;
-}
-div#teloClanku {
-    top: 20%;
-    position: relative;
-    left: 12%;
 }
 
 .posty_odkazy {
@@ -505,17 +500,12 @@ div#teloClanku {
     background-color: var(--ruzova);
 }
 
-div#post {
-    width: 76%;
-    height: 30%;
-    position: fixed;
-}
 
 div#postyTelo {
     top: 20%;
-    width: 80%;
+    width: 70%;
     position: absolute;
-    left: 10%;
+    left: 15%;
 }
 
 

@@ -1,31 +1,8 @@
+<?php require "head.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
-    <title>Title</title>
-</head>
-
 <body style="background-color: var(--tmavoModra) ">
-<header >
-        <nav  id="menu">
-            <ul>
-                <!-- a = odkaz na čokolvek,premenná-->
-                <li><a href="forum.php">Fórum</a></li>
-                <li><a href="index.php">Domov</a></li>
-                <?php
-                if(isset($_SESSION['menoLogin'])) {
-                    echo  '<li><a href="userPage.php">Profil</a></li>';
-                } else {
-                    echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
-                }
-                ?>
-            </ul>
-        </nav>
-</header>
 <main style="width: auto; min-height: 100px; overflow: hidden;" >
     <div style="background-image: url('https://i.ibb.co/6nV300V/pozadie1.png');
         width: 100%; height: 150vh ; position: absolute; opacity: 0.2" >

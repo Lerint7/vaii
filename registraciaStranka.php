@@ -1,4 +1,5 @@
-<?php include('registracia.php') ?>
+<?php include('registracia.php') ;
+require_once "head.php"?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -11,22 +12,6 @@
 
 <body style="background-color:var(--tmavoModra) ">
 
-<header style="background: var(--modra)">
-    <div id="logo"><img src="https://key0.cc/images/small/105836_69e02ad11d1a888cd38319316b587bfd.png" alt = "logo stránky, čo je otvorená kniha" width="80" height="80">
-        </div>
-        <nav id="menu" style="background-color: var(--modra);">
-            <ul>
-                <!-- a = odkaz na čokolvek,premenná-->
-                <li><a style="color: var(--biela)" href="forum.php">Fórum</a></li>
-                <li><a style="color: var(--biela)"href="index.php">Domov</a></li>
-                <?php
-                if(isset($_SESSION['menoLogin'])) {
-                    echo  '<li><a style="color: var(--biela)" href="userPage.php">Profil</a></li>';
-                } else {
-                    echo '<li><a style="color: var(--biela)" href="registraciaStranka.php">Registracia</a></li>';
-                }
-                ?>
-            </ul>
             <form method="post" enctype="application/x-www-form-urlencoded" action="login.php">
             <div class="login">
                 <input type="text" name="menoLogin" placeholder="meno" required>
@@ -34,8 +19,6 @@
                 <input type="submit" value="Prihlásenie" name = "login">
             </div>
             </form>
-    </nav>
-</header>
 <div id="posunSirkaScreenu">
 <div id = "registracia">
     <form method="post" enctype="application/x-www-form-urlencoded" action="registraciaStranka.php">
