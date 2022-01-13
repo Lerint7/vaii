@@ -1,5 +1,13 @@
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
+    let parametre = {
+        pocet : false,
+        pismena :false,
+        cisla : false,
+        specialne : false
+    }
+    let barSila = document.getElementById("barSila");
+    let sprava = document.getElementById("msg");
 }
 
 window.onclick = function(event) {
@@ -15,14 +23,6 @@ window.onclick = function(event) {
     }
 }
 
-let parametre = {
-    pocet : false,
-    pismena :false,
-    cisla : false,
-    specialne : false
-}
-let barSila = document.getElementById("barSila");
-let sprava = document.getElementById("msg");
 
 function kontrolaSilyHesla () {
     let password = document.getElementById("passwd").value;
@@ -64,5 +64,8 @@ function kontrolaSilyHesla () {
                 break;
         }
     }
+}
+
+function updateUser() {
 
 }

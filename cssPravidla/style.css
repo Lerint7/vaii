@@ -174,14 +174,8 @@ div#stredStranky {
 .vyhladavaciPanel {
     background: rgba(186, 109, 89, 0.7);
     width: 250px;
-    height: 800px;
+    height: auto;
     margin-left: auto;
-}
-.slideShow {
-    padding-top: 10px;
-    position: relative;
-    width: 100%;
-    height: 200px;
 }
 
 .panelText p {
@@ -211,6 +205,9 @@ div#stredStranky {
 .textClanku p {
     color: var(--biela);
     text-indent: 20px;
+}
+div#komentare {
+    width: 100px;
 }
 
 /*registracnaStranka*/

@@ -1,5 +1,32 @@
-<?php include('registracia.php') ;
-require_once "head.php"?>
+<?php include('pracaSDatabazou/registracia2.php');
+require_once "zakladneStranky/head.php";
+require_once "pracaSDatabazou/prihlasovanie.php";
+require_once "pracaSDatabazou/pripojenie.php";
+
+if ($_REQUEST['registracia']) {
+    $registracia = new registracia2($_POST['meno'], $_POST['email'], $_POST['heslo'], $_POST['hesloOpakovanie']);
+    $error = $registracia->porovnanie();
+    if (empty($error)) {
+        $error = $registracia->nachadzaSa($pripojenie);
+        if (empty($error)) {
+            echo $error;
+            $registracia->vlozenieUzivatela($pripojenie);
+        }
+    }
+}
+
+if ($_REQUEST['prihlasenie']) {
+    $prihlasovanie =  new prihlasovanie();
+    if (empty($error)) {
+       $error =  $prihlasovanie->prihlasenieKontrola($_POST['menoLogin'],$_POST['hesloLogin']);
+        if(empty($error)){
+            $prihlasovanie->prihlasenie($pripojenie);
+            $error = $prihlasovanie->kontrolaHesla($pripojenie);
+            echo $error;
+       }
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en" >
@@ -7,23 +34,24 @@ require_once "head.php"?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="cssPravidla/style.css?v=<?php echo time(); ?>">
     <title>Title</title>
 </head>
 
 <body style="background-color:var(--tmavoModra) ">
 
-            <form method="post" enctype="application/x-www-form-urlencoded" action="login.php">
-            <div class="login">
-                <input type="text" name="menoLogin" placeholder="meno" required>
-                <input type="password" name="hesloLogin" placeholder="heslo" required>
-                <input type="submit" value="Prihlásenie" name = "login">
-
-            </div>
+            <form method="post" enctype="application/x-www-form-urlencoded" >
+                <div class="login">
+                    <input type="text" name="menoLogin" placeholder="meno" required>
+                    <input type="password" name="hesloLogin" placeholder="heslo" required>
+                    <input type="submit" value="Prihlásenie" name = "prihlasenie">
+                </div>
             </form>
+
 <div id="posunSirkaScreenu">
 <div id = "registracia">
-    <form method="post" enctype="application/x-www-form-urlencoded" action="registraciaStranka.php">
+    <form method="post" enctype="application/x-www-form-urlencoded">
+
     <div id = "RegistraciaMojeUdaje">
         <p style="color: var(--biela); font-weight: bold; font-size: 16pt">Prihlasenie</p>
          <?php echo $error; ?>
@@ -34,17 +62,18 @@ require_once "head.php"?>
 
         <div id = "barSila" style="width: 80%; height: 30px "></div>
         <p id = "msg" style="font-weight: bold;font-size: 14pt; color: var(--modra)">Sila hesla</p>
-        <script src="funkcie.js"></script>
+        <script src="javaScript/funkcie.js"></script>
             <input type="password" name="hesloOpakovanie" placeholder="Zadajte heslo znova" required>
 
-        <input type="submit" value="REGISTRÁCIA">
+        <input type="submit" value="REGISTRÁCIA" name="registracia">
     </div>
     <div id ="RegistraciaSocialne">
         <button class="RegistraciaS" style="background: #32508E">Registrácia cez facebook</button>
         <button class="RegistraciaS" style="background: #55ACEE">Registrácia cez Twitter</button>
         <button class="RegistraciaS" style="background: #DD4B39">Registrácia cez Google+</button>
     </div>
-        </form>
+
+    </form>
 </div>
 
 <div id = "diskusiaText">

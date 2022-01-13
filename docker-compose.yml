@@ -1,0 +1,21 @@
+version: '2'
+services:
+  webserver-DB:
+    ports:
+     - "3306:3306"
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=myDB
+  webserver:
+    image: mitlabs/apache-php8.0
+    ports:
+      - "80:80"
+    depends_on:
+      - webserver-DB
+    volumes:
+      - ./:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internaltouch
+      version: '2'
+      services:

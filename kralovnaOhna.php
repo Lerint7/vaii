@@ -1,4 +1,5 @@
-<?php require "head.php" ?>
+<?php require "zakladneStranky/head.php" ?>
+<script type = "text/javascript" src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,38 +24,25 @@
     </div>
 
     <div class="vyhladavaciPanel">
-        <iframe width="250" height="200"
-            src="https://www.youtube.com/embed/tgbNymZ7vqY?&mute=1">
-        </iframe>
-        <img src="https://c4.wallpaperflare.com/wallpaper/47/972/904/fantasy-women-face-girl-stare-hd-wallpaper-preview.jpg" class="slideShow" alt="obrázok ženy">
-        <img src="https://i1.sndcdn.com/artworks-000311006856-qu0jo3-t500x500.jpg" class="slideShow" alt="obrázok krajiny">
-        <img src="https://mk0a2minutetabl7hq7i.kinstacdn.com/wp-content/uploads/2020/02/Arvyre-Continent-Map-23x16-Base-Map.jpg" class="slideShow" alt="obrázok mapy">
-        <script src="slideShowScript.js"></script>
-
         <div class = "panelText">
             <p>“Explore.”</p>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo, a varius purus lorem in massa.Lorem ipsum dolor sit amet. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo.</span>
         </div>
-
     </div>
 
-</main >
-<script>
-    var myIndex = 0;
-    carousel();
 
-    function carousel() {
-        var i;
-        var x = document.getElementsByClassName("slideShow");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        myIndex++;
-        if (myIndex > x.length) {myIndex = 1}
-        x[myIndex-1].style.display = "block";
-        setTimeout(carousel, 5000);
-    }
-</script>
+</main >
+
+
+<div id = "komentare">
+    <h1 style="color: white">Komentáre</h1>
+    <div>
+        <input type="text" placeholder="Meno" name="meno">
+        <input type="text" placeholder="Email" name="email">
+        <textarea name = comment style="margin: 0px;width: 200px;height: 80px;"></textarea>
+        <a style="color: #f2f4f3;font-size: 15pt" href="javaScript:void(0)">Odoslanie</a>
+    </div>
+</div>
 
 <footer >
     <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
@@ -62,3 +50,4 @@
 </footer>
 </body>
 </html>
+</script>

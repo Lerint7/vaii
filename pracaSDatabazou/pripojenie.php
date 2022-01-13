@@ -1,5 +1,5 @@
 <?php
-$servername = "vaii-webserver-DB-1";
+$servername = "vaii_webserver-DB_1";
 $username = "root";
 $password = "password";
 $database = "myDB";

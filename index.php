@@ -2,8 +2,9 @@
 if (session_status() == PHP_SESSION_NONE ) {
     session_start();
 }
-require "head.php"
+require "zakladneStranky/head.php"
 ?>
+<html>
 <body>
     <div id="citat">
         <!-- span krátky text-->

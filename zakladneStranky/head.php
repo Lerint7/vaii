@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../cssPravidla/style.css?v=<?php echo time(); ?>">
     <title>Title</title>
 </head>
 
@@ -13,13 +13,13 @@
     <nav id="menu" >
         <ul>
             <!-- a = odkaz na čokolvek,premenná-->
-            <li><a href="forum.php">Fórum</a></li>
-            <li><a href="index.php">Domov</a></li>
+            <li><a href="../forum.php">Fórum</a></li>
+            <li><a href="../index.php">Domov</a></li>
             <?php
             if (isset($_SESSION['menoLogin'])) {
-                echo  '<li><a href="userPage.php">Profil</a></li>';
+                echo '<li><a href="../userPage.php">Profil</a></li>';
             } else {
-                echo '<li><a href="registraciaStranka.php">Registracia</a></li>';
+                echo '<li><a href="../registraciaStranka.php">Registracia</a></li>';
             }
             ?>
         </ul>

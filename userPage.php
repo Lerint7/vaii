@@ -1,6 +1,8 @@
 <?php session_start();
-require "pripojenie.php";
-require_once "head.php";
+require "pracaSDatabazou/pripojenie.php";
+require_once "zakladneStranky/head.php";
+require_once "pracaSDatabazou/prihlasovanie.php";
+
 if (!isset($_SESSION['menoLogin'])) {
     header("Location:registraciaStranka.php");
     die;
@@ -14,6 +16,7 @@ $insert->store_result();
 $insert->bind_result($meno, $email);
 $insert->fetch();
 
+
 if (isset($_POST['zmenaMena'])) {
     if(strlen($_POST['zmenaMena']) > 6) {
         $insert = $pripojenie->prepare("UPDATE users set meno = ? where meno = ?");
@@ -23,7 +26,7 @@ if (isset($_POST['zmenaMena'])) {
         header("Refresh:0");
     } else {
         $message = "Meno je príliš krátke. Minimálne dĺžka je 6 znakov";
-        echo "<script type='text/javascript'>alert('$message');</script>";;
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
@@ -31,7 +34,7 @@ if (isset($_POST['zmenaMailu'])) {
     $znaky = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
     if (!preg_match ($znaky, $_POST['zmenaMailu'])) {
         $message = "Email nie je platný";
-        echo "<script type='text/javascript'>alert('$message');</script>";;
+        echo "<script type='text/javascript'>alert('$message');</script>";
     } else {
         $insert = $pripojenie->prepare("UPDATE users set email = ? where meno = ?");
         $insert->bind_param('ss', $_POST['zmenaMailu'] , $_SESSION['menoLogin']);
@@ -67,6 +70,15 @@ if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) 
     }
 }
 
+
+if ($_REQUEST['odhlasenie']) {
+    if (isset($_POST['menoLogin'])) {
+        $databaza = new prihlasovanie();
+        $databaza->odhlasenie();
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -79,13 +91,18 @@ if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) 
         <div id = "menoLogin">
             <p> Meno </p>
         </div>
+        <a href="mojeClanky.php">
+            <input type="submit" value="Moje články" style="top: 18%;font-size: 15pt;left: 10%;width: 80%;height: 8%;position: relative" >
+        </a>
     </div>
 
-    <div form id = "odhlasenie">
-        <form method="post" enctype="application/x-www-form-urlencoded" action="odhlasenie.php">
-            <input type="submit" value="Odhlásenie" style="position: absolute;top: 0;right: 0;">
+
+    <div id = "odhlasenie">
+        <form method="post" enctype="application/x-www-form-urlencoded" action="">
+            <input type="submit" value="Odhlásenie" name="odhlasenie" style="position: absolute;top: 0;right: 0;">
         </form>
     </div>
+
 
     <div id = "profiloveUdaje" style="list-style: none">
         <form method="post" enctype="application/x-www-form-urlencoded" >
@@ -110,6 +127,7 @@ if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) 
             <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto" onclick="return confirm('Chcete určite zmeniť údaje?')">
             <input type="submit" value="Zmazanie účtu" name = "zmazanieUctu" style="width: 100%; height: 10%; font-size: 16pt; margin-top: 10px" onclick="return confirm('Chcete určite vymazať účet?')">
         </form>
+
     </div>
 </div>
 
