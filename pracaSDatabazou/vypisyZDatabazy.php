@@ -1,5 +1,5 @@
 <?php
-
+include_once "ajax.php";
 class vypisyZDatabazy
 {
     private int $pocetRiadkov = 0;
@@ -30,7 +30,9 @@ class vypisyZDatabazy
             for ($i = 1;$i <= $this->pocetRiadkov; $i++) {
                 $insert->bind_result($id, $nazov, $popis);
                 $insert->fetch();
-                $this->posty .= "<a href='/post.php?id=" . $id . "' class = 'posty_odkazy'>".$nazov." </a>";
+                $this->posty .= "<div id = $id>
+                <a href='/post.php?id=" . $id . "' class = 'posty_odkazy'>".$nazov." </a>
+                </div>";
             }
             echo $this->posty;
         } else {
@@ -58,11 +60,10 @@ class vypisyZDatabazy
     /**
      * @return string
      */
-    public function getMenoUzivatelTopicu(): string
+    public function getMenoUzivatel(): string
     {
-        return $this->menoUzivatelTopicu;
+        return $this->menoUzivatel;
     }
-
     /**
      * @return string
      */
@@ -80,16 +81,21 @@ class vypisyZDatabazy
     }
 
     function kategorieForum($pripojenie) {
+        ?> <script src="javaScript/funkcie.js"></script> <?php
+
         $insert = $pripojenie->prepare("SELECT idCategories,nazovKategorie,popisKategorie FROM categories ORDER BY nazovKategorie ASC");
         $insert->execute();
         $insert->store_result();
         $pocetRiadkov = $insert->num_rows();
         $kategorie = "";
+        $pomocna = "categories";
         if ($pocetRiadkov > 0) {
             for ($i = 1;$i <= $pocetRiadkov; $i++) {
                 $insert->bind_result($id, $nazov, $popis);
                 $insert->fetch();
-                $kategorie .= "<a href='/forum.php?id=" . $id . "' class = 'kategorie_odkazy'>".$nazov." </a>";
+                $kategorie .= "<div id = $id>
+                                <a href='/forum.php?id=" . $id . "' class = 'kategorie_odkazy'>".$nazov."</a> 
+                                </div>";
             }
             $kategorie .= "<a href='/forum.php' class = 'topicy_odkazy'>" . "Všetky topicy" . " </a>";
             echo $kategorie;
@@ -113,12 +119,18 @@ class vypisyZDatabazy
             for ($i = 1; $i <= $pocetRiadkov; $i++) {
                 $insertTopic->bind_result($idT, $nazovT, $popisT);
                 $insertTopic->fetch();
-                $topicy .= "<a href='/topic.php?id=" . $idT . "' class = 'topicy_odkazy'>" . $nazovT . " </a>";
+                $topicy .= "<div>
+                                <a href='/topic.php?id=" . $idT . "' class = 'topicy_odkazy'>" . $nazovT . " </a>
+
+                    <i style='position: relative;left: 90%;top: -20px;color: #f2f4f3' class='fa fa-trash' aria-hidden=true></i>
+
+                                </div>";
             }
             echo $topicy;
         }
     }
 
+    //asi už ee
     function topiky($pripojenie,$idPomocna){
         $insert = $pripojenie->prepare("SELECT idPost,nazovPostu,obsah FROM post 
                                        where idTopics = '$idPomocna' ORDER BY nazovPostu ASC");

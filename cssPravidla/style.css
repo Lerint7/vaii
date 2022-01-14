@@ -513,6 +513,16 @@ div#postyTelo {
     bottom: 5px;
 }
 
+/* filter postov*/
+div#informacie {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    font-size: 15pt;
+    color: #f2f4f3;
+}
+
+
 /*930 šírka*/
 @media screen and (max-width: 930px) {
     div#profil {

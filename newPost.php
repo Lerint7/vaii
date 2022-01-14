@@ -22,7 +22,7 @@ if ($_REQUEST['submit']) {
 }
 ?>
 
-<form method="post" enctype="application/x-www-form-urlencoded" action="" style="width: 0;height: 0">
+<form method="post" enctype="application/x-www-form-urlencoded" action="">
     <div id="myDropdown">
         <select name = "nazovKategoria">
             <option value="Select">Select</option>

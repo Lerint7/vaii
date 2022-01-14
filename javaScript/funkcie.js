@@ -65,7 +65,3 @@ function kontrolaSilyHesla () {
         }
     }
 }
-
-function updateUser() {
-
-}

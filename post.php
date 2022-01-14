@@ -20,7 +20,7 @@ require_once "zakladneStranky/postZakladnaStranka.php";
         $vypis->posty($pripojenie,$id);
         $nazov = $vypis->getNazovTopicu();
         $popis = $vypis->getPopisTopicu();
-        $menoUzivatel = $vypis->getMenoUzivatelTopicu();
+        $menoUzivatel = $vypis->getMenoUzivatel();
 
         echo "<span style='position: fixed; font-size: 24pt;font-weight: bold; color: var(--biela); top: 20%; text-align: center; width: inherit;left: 15%;right: 15%'> $nazov </span>";
         echo "<span style='position: fixed; font-size: 16pt; color: var(--biela); top: 30%; text-align: center; width: inherit;left: 15%;right: 15%'> $popis </span>";
