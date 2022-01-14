@@ -88,7 +88,6 @@ class vypisyZDatabazy
         $insert->store_result();
         $pocetRiadkov = $insert->num_rows();
         $kategorie = "";
-        $pomocna = "categories";
         if ($pocetRiadkov > 0) {
             for ($i = 1;$i <= $pocetRiadkov; $i++) {
                 $insert->bind_result($id, $nazov, $popis);

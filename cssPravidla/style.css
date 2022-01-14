@@ -4,6 +4,73 @@
     margin: 0;
     padding: 0;
 }
+
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+width: 70%; /* Full width */
+height: 100%; /* Full height */
+}
+
+/* Modal Content */
+.modalObsah {
+    background-color: #fefefe;
+    width: 80%;
+    height: 250px;
+    margin-left: 10%;
+}
+
+/* The Close Button */
+.close {
+    font-size: 15pt;
+    font-weight: bold;
+    left: 95%;
+    position: relative;
+}
+
+.close:hover,
+.close:focus {
+    cursor: pointer;
+}
+
+
+.modaly {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    width: 70%; /* Full width */
+    height: 100%; /* Full height */
+}
+
+/* Modal Content */
+.modalObsahy {
+    background-color: #fefefe;
+    width: 80%;
+    height: 300px;
+    margin-left: 10%;
+}
+
+/* The Close Button */
+.closey {
+    font-size: 15pt;
+    font-weight: bold;
+    left: 95%;
+    position: relative;
+}
+
+.closey:hover,
+.closey:focus {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
 :root {
     --tmava: #1C1F23;
     --tmavoModra: #23374C;
@@ -538,7 +605,7 @@ div#informacie {
 
 @media screen and (max-width: 740px) {
     div#profiloveUdaje {
-        top: 50%;
+        top: 55%;
         left: 0px;
         right: 0px;
         width: 100%;

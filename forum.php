@@ -6,6 +6,14 @@ require_once "pracaSDatabazou/pripojenie.php";
 require "zakladneStranky/head.php";
 require_once "zakladneStranky/postZakladnaStranka.php";
 require_once "pracaSDatabazou/vypisyZDatabazy.php";
+
+$admin = "";
+$insert = $pripojenie->prepare("SELECT rola FROM users WHERE meno = ?");
+$insert->bind_param('s', $_SESSION['menoLogin']);
+$insert->execute();
+$insert->store_result();
+$insert->bind_result($admin);
+$insert->fetch();
 ?>
 <script src="javaScript/funkcie.js"></script>
 
@@ -21,12 +29,22 @@ require_once "pracaSDatabazou/vypisyZDatabazy.php";
 
 <div id = "kategorieTelo">
     <?php
+
+    if ($admin == 1) {
+        echo "<a class = 'kategorie_odkazy'>" . "Pridanie kategorie" . " </a>";
+    }
     $vypis = new vypisyZDatabazy();
     $vypis->kategorieForum($pripojenie);
     ?>
+
 </div>
 <div id = "topicyTelo">
     <?php
+
+    if ($admin == 1) {
+        echo "<a class = 'topicy_odkazy'>" . "Pridanie Topicu" . " </a>";
+    }
+
     $id = ($_GET['id']);
     $vypis->topikyForum($pripojenie, $id);
     ?>

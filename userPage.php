@@ -8,7 +8,6 @@ if (!isset($_SESSION['menoLogin'])) {
     die;
 }
 $menoLogin = $_SESSION['menoLogin'];
-
 $insert = $pripojenie->prepare("SELECT meno, email FROM users WHERE meno = ?");
 $insert->bind_param('s', $_SESSION['menoLogin']);
 $insert->execute();
@@ -70,14 +69,10 @@ if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) 
     }
 }
 
-
 if ($_REQUEST['odhlasenie']) {
-    if (isset($_POST['menoLogin'])) {
         $databaza = new prihlasovanie();
         $databaza->odhlasenie();
-    }
 }
-
 
 ?>
 
