@@ -6,9 +6,12 @@ class vypisyZDatabazy
     private string $idPrihlaseneho = "";
     private string $posty = "";
     private string $menoUzivatel = "";
-    private string $nazovTopicu = "";
-    private string $popisTopicu = "";
-    private string $menoUzivatelTopicu = "";
+    private string $nazovPostu = "";
+    private string $popisPostu = "";
+    private int $idUzivatelaPostu = 0;
+    private int $idTopicu = 0;
+    private int $idkategorie = 0;
+
 
     function ziskanieID($pripojenie, $uzivatel) {
         $insert = $pripojenie->prepare('SELECT id from users where meno = ?');
@@ -41,21 +44,20 @@ class vypisyZDatabazy
     }
 
     function posty ($pripojenie,$idPomocna){
-        $insert = $pripojenie->prepare("SELECT idPouzivatel,nazovPostu,obsah FROM post 
+        $insert = $pripojenie->prepare("SELECT idCategories,idTopics,idPouzivatel,nazovPostu,obsah FROM post 
                                        where idPost = '$idPomocna' ORDER BY nazovPostu ASC");
         $insert->execute();
         $insert->store_result();
         $this->pocetRiadkov = $insert->num_rows();
-        $insert->bind_result($this->menoUzivatelTopicu, $this->nazovTopicu,$this->popisTopicu);
+        $insert->bind_result($this->idkategorie,$this->idTopicu,$this->idUzivatelaPostu, $this->nazovPostu,$this->popisPostu);
         $insert->fetch();
 
         $pouzivatelMeno = $pripojenie->prepare("SELECT meno FROM users where id = ? ");
-        $pouzivatelMeno->bind_param('i' ,$pouzivatel);
+        $pouzivatelMeno->bind_param('i' ,$this->idUzivatelaPostu);
         $pouzivatelMeno->execute();
         $pouzivatelMeno->bind_result($this->menoUzivatel);
         $pouzivatelMeno->fetch();
     }
-
 
     /**
      * @return string
@@ -67,18 +69,21 @@ class vypisyZDatabazy
     /**
      * @return string
      */
-    public function getPopisTopicu(): string
+    public function getPopisPostu(): string
     {
-        return $this->popisTopicu;
+        return $this->popisPostu;
     }
 
     /**
      * @return string
      */
-    public function getNazovTopicu(): string
+    public function getNazovPostu(): string
     {
-        return $this->nazovTopicu;
+        return $this->nazovPostu;
     }
+
+
+
 
     function kategorieForum($pripojenie) {
         ?> <script src="javaScript/funkcie.js"></script> <?php
@@ -118,34 +123,18 @@ class vypisyZDatabazy
             for ($i = 1; $i <= $pocetRiadkov; $i++) {
                 $insertTopic->bind_result($idT, $nazovT, $popisT);
                 $insertTopic->fetch();
-                $topicy .= "<div>
-                                <a href='/topic.php?id=" . $idT . "' class = 'topicy_odkazy'>" . $nazovT . " </a>
-
-                    <i style='position: relative;left: 90%;top: -20px;color: #f2f4f3' class='fa fa-trash' aria-hidden=true></i>
-
-                                </div>";
+                $topicy .= "<div><a href='/topic.php?id=" . $idT . "' class = 'topicy_odkazy'>" . $nazovT . " </a></div>";
             }
             echo $topicy;
         }
     }
 
-    //asi už ee
-    function topiky($pripojenie,$idPomocna){
-        $insert = $pripojenie->prepare("SELECT idPost,nazovPostu,obsah FROM post 
-                                       where idTopics = '$idPomocna' ORDER BY nazovPostu ASC");
-        $insert->execute();
-        $insert->store_result();
-        $this->pocetRiadkov = $insert->num_rows();
-        $posty = "";
-        if ($this->pocetRiadkov > 0) {
-            for ($i = 1;$i <= $this->pocetRiadkov; $i++) {
-                $insert->bind_result($id, $nazov, $popis);
-                $insert->fetch();
-                $posty .= "<a href='/post.php?id=" . $id . "' class = 'posty_odkazy'>".$nazov." </a>";
-            }
-            echo $posty;
-        } else {
-            echo "<p style='font-weight: bold;text-align: center;font-size: 25pt;color: var(--biela);'> V tomto topicu nie sú žiadne posty </p>";
-        }
+    public function updatePostu($pripojenie,$co, $cozmena,$podmienka)
+    {
+        $update = $pripojenie->prepare("UPDATE post SET $co = ? where idPost = ?");
+        $update->bind_param('si',$cozmena,$podmienka);
+        $update->execute();
     }
+
+
 }

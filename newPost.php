@@ -12,13 +12,11 @@ require_once "zakladneStranky/head.php";
 require_once "zakladneStranky/postZakladnaStranka.php";
 
 if ($_REQUEST['submit']) {
-    $premena = "Kniha 1";
     $novyPost =  new vkladaniePostu($_POST['nazovKategoria'],$_POST['nazovTopic'],$_POST['nazovLCanku'],$_POST ['obsah'],$_SESSION['menoLogin']);
     $idKategorie = $novyPost->pripravenieNaVlozenie($pripojenie, "idCategories", "categories", "nazovKategorie",$novyPost->getNazovKategoria());
     $idTopicu = $novyPost->pripravenieNaVlozenie($pripojenie, "idTopics", "topics", "nazovTopicu", $novyPost->getNazovTopic());
     $idUzivatel= $novyPost->pripravenieNaVlozenie($pripojenie, "id", "users", "meno",$novyPost->getMenoLogin());
     $novyPost->vlozeniePostu($pripojenie,$idKategorie,$idTopicu,$idUzivatel);
-//dropdown menu prerobiť
 }
 ?>
 

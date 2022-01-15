@@ -21,8 +21,7 @@ class vkladaniePostu
     public function pripravenieNaVlozenie($pripojenie, $coVyberam, $odkialVyberam, $podmienka, $bind):int
     {
         $insert = $pripojenie->prepare("SELECT $coVyberam from $odkialVyberam where $podmienka = ? ");
-        $insert->bind_param('s',$bind );
-        echo $nazovKategoria;
+        $insert->bind_param('s',$bind);
         $insert->execute();
         $insert->store_result();
         $insert->bind_result($vysledok);

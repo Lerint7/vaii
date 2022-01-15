@@ -18,12 +18,16 @@ require_once "zakladneStranky/postZakladnaStranka.php";
         $id = $_GET['id'];
         $vypis = new vypisyZDatabazy();
         $vypis->posty($pripojenie,$id);
-        $nazov = $vypis->getNazovTopicu();
-        $popis = $vypis->getPopisTopicu();
+        $nazov = $vypis->getNazovPostu();
+        $popis = $vypis->getPopisPostu();
         $menoUzivatel = $vypis->getMenoUzivatel();
+        if($menoUzivatel =  $_SESSION['menoLogin']){
+            echo "<a class='postTexty' style='left: 12%' onclick='' href='upravaPostu.php'> Vymazať  </a>";
+            echo "<a class='postTexty' style='right: 12%' onclick='' href='upravaPostu.php?id=" . $id . "'> Upraviť  </a>";
+        }
 
-        echo "<span style='position: fixed; font-size: 24pt;font-weight: bold; color: var(--biela); top: 20%; text-align: center; width: inherit;left: 15%;right: 15%'> $nazov </span>";
-        echo "<span style='position: fixed; font-size: 16pt; color: var(--biela); top: 30%; text-align: center; width: inherit;left: 15%;right: 15%'> $popis </span>";
-        echo "<span style='position: fixed; font-size: 16pt; color: var(--biela); top: 15%;left: 13%; width: inherit'> $menoUzivatel </span>";
+        echo "<span class='postTexty' style='text-align: center;left: 15%;right: 15%;font-size: 20pt'> $nazov </span>";
+        echo "<span class='postTexty' style='top: 30%; text-align: center;left: 15%;right: 15%'> $popis </span>";
+        echo "<span class='postTexty' style='top: 15%;left: 13%'> $menoUzivatel </span>";
         ?>
     </div>

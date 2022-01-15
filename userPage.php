@@ -2,11 +2,13 @@
 require "pracaSDatabazou/pripojenie.php";
 require_once "zakladneStranky/head.php";
 require_once "pracaSDatabazou/prihlasovanie.php";
+require_once "updateUzivatel.php";
 
 if (!isset($_SESSION['menoLogin'])) {
     header("Location:registraciaStranka.php");
     die;
 }
+
 $menoLogin = $_SESSION['menoLogin'];
 $insert = $pripojenie->prepare("SELECT meno, email FROM users WHERE meno = ?");
 $insert->bind_param('s', $_SESSION['menoLogin']);
@@ -17,63 +19,27 @@ $insert->fetch();
 
 
 if (isset($_POST['zmenaMena'])) {
-    if(strlen($_POST['zmenaMena']) > 6) {
-        $insert = $pripojenie->prepare("UPDATE users set meno = ? where meno = ?");
-        $insert->bind_param('ss', $_POST['zmenaMena'], $_SESSION['menoLogin']);
-        $insert->execute();
-        $_SESSION['menoLogin'] = $_POST['zmenaMena'];
-        header("Refresh:0");
-    } else {
-        $message = "Meno je príliš krátke. Minimálne dĺžka je 6 znakov";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
+    $update = new updateUzivatel();
+    $update->zmenaMena($pripojenie);
+
 }
 
 if (isset($_POST['zmenaMailu'])) {
-    $znaky = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
-    if (!preg_match ($znaky, $_POST['zmenaMailu'])) {
-        $message = "Email nie je platný";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    } else {
-        $insert = $pripojenie->prepare("UPDATE users set email = ? where meno = ?");
-        $insert->bind_param('ss', $_POST['zmenaMailu'] , $_SESSION['menoLogin']);
-        $insert->execute();
-        header("Refresh:0");
-    }
+    $update->zmenaMailu($pripojenie);
 }
 
 if (isset($_POST['zmazanieUctu'])) {
-    $insert = $pripojenie->prepare("DELETE from users where meno = ?");
-    $insert->bind_param('s',$menoLogin );
-    $insert->execute();
-    unset($_SESSION);
-    session_destroy();
-    header('Location: index.php');
+    $update->zmazanieUctu($pripojenie);
 }
 
 if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) ) {
-    if(strlen($_POST['zmenaHesla']) > 6 ) {
-        if (($_POST['zmenaHesla']) == ($_POST['zmenaHeslaOpakovanie'])) {
-            $heslo = $_POST['zmenaHesla'];
-            $heslo = password_hash($heslo, PASSWORD_BCRYPT);
-            $insert = $pripojenie->prepare("UPDATE users set heslo = ? where meno = ?");
-            $insert->bind_param('ss',$heslo ,$menoLogin );
-            $insert->execute();
-        } else {
-            $message = "Heslá sa nezhodujú.";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }
-    } else {
-        $message = "Heslo je príliš krátke. Minimálne dĺžka je 6 znakov";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
+    $update->zmenaHesla($pripojenie);
 }
 
 if ($_REQUEST['odhlasenie']) {
-        $databaza = new prihlasovanie();
-        $databaza->odhlasenie();
+    $databaza = new prihlasovanie();
+    $databaza->odhlasenie();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -100,26 +66,27 @@ if ($_REQUEST['odhlasenie']) {
 
 
     <div id = "profiloveUdaje" style="list-style: none">
-        <form method="post" enctype="application/x-www-form-urlencoded" >
-        <div id="main-div">
-            <div id = "menoUdaje" >
-                <label for="input">Meno</label>
-                <input type="text" id="input" name = "zmenaMena" value = "<?php echo $meno ?>">
+        <form id="idZmenaUdajov" method="post" enctype="application/x-www-form-urlencoded" >
+            <div id="main-div">
+                <div id = "menoUdaje" >
+                    <label for="inputMeno">Meno</label>
+                    <input type="text" id="inputMeno" name = "zmenaMena" value = "<?php echo $meno ?>">
+                </div>
+                <div id = "emailUdaje" >
+                    <label for="inputMail">Emailová adresa</label>
+                    <input type="text" id="inputMail" name = "zmenaMailu" value = "<?php echo $email ?>">
+                </div>
+                <div id = "hesloUdaje" >
+                    <label for="inputHeslo">Heslo</label>
+                    <input type="password" id="inputHeslo" name = "zmenaHesla" >
+                </div>
+                <div id = "hesloPotvrdeneUdaje">
+                    <label for="inputHesloZnova">Heslo znova</label>
+                    <input type="password" id="inputHesloZnova" name = "zmenaHeslaOpakovanie">
+                </div>
             </div>
-            <div id = "emailUdaje" >
-                <label for="input">Emailová adresa</label>
-                <input type="text" id="input" name = "zmenaMailu" value = "<?php echo $email ?>">
-            </div>
-            <div id = "hesloUdaje" >
-                <label for="input">Heslo</label>
-                <input type="password" id="input" name = "zmenaHesla" >
-            </div>
-            <div id = "hesloPotvrdeneUdaje">
-                <label for="input">Heslo znova</label>
-                <input type="password" id="input" name = "zmenaHeslaOpakovanie">
-            </div>
-        </div>
-            <input type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto" onclick="return confirm('Chcete určite zmeniť údaje?')">
+            //možno refresh po zrušení
+            <input onclick="return confirm('Chcete určite zmeniť údaje?')" type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto">
             <input type="submit" value="Zmazanie účtu" name = "zmazanieUctu" style="width: 100%; height: 10%; font-size: 16pt; margin-top: 10px" onclick="return confirm('Chcete určite vymazať účet?')">
         </form>
 

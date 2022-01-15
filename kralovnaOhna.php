@@ -6,7 +6,7 @@
 <body style="background-color: var(--tmavoModra) ">
 <main style="width: auto; min-height: 100px; overflow: hidden;" >
     <div style="background-image: url('https://i.ibb.co/6nV300V/pozadie1.png');
-        width: 100%; height: 150vh ; position: absolute; opacity: 0.2" >
+         width: 100%;height: 100vh;position: fixed;opacity: 0.2" >
     </div>
     <div id="stredStranky">
         <div class="titulka">
@@ -24,25 +24,13 @@
     </div>
 
     <div class="vyhladavaciPanel">
+        <img src="https://wallpapercave.com/wp/XBiMAN1.jpg" alt="výjav z knihy" style="width: 100%">
         <div class = "panelText">
             <p>“Explore.”</p>
                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo, a varius purus lorem in massa.Lorem ipsum dolor sit amet. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo.</span>
         </div>
     </div>
-
-
 </main >
-
-
-<div id = "komentare">
-    <h1 style="color: white">Komentáre</h1>
-    <div>
-        <input type="text" placeholder="Meno" name="meno">
-        <input type="text" placeholder="Email" name="email">
-        <textarea name = comment style="margin: 0px;width: 200px;height: 80px;"></textarea>
-        <a style="color: #f2f4f3;font-size: 15pt" href="javaScript:void(0)">Odoslanie</a>
-    </div>
-</div>
 
 <footer >
     <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
