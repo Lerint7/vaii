@@ -1,8 +1,8 @@
 <?php session_start();
-require "pracaSDatabazou/pripojenie.php";
+require_once "pracaSDatabazou/pripojenie.php";
 require_once "zakladneStranky/head.php";
 require_once "pracaSDatabazou/prihlasovanie.php";
-require_once "updateUzivatel.php";
+require_once "pracaSDatabazou/updateUzivatel.php";
 
 if (!isset($_SESSION['menoLogin'])) {
     header("Location:registraciaStranka.php");
@@ -52,14 +52,12 @@ if ($_REQUEST['odhlasenie']) {
         <div id = "menoLogin">
             <p> Meno </p>
         </div>
-        <a href="mojeClanky.php">
-            <input type="submit" value="Moje články" style="top: 18%;font-size: 15pt;left: 10%;width: 80%;height: 8%;position: relative" >
-        </a>
+        <a href="mojeClanky.php" style="top: 18%;font-size: 15pt;left: 25%;width: 100%;height: 25px;position: relative;z-index: 1;">Moje články</a>
     </div>
 
 
     <div id = "odhlasenie">
-        <form method="post" enctype="application/x-www-form-urlencoded" action="">
+        <form method="post" enctype="application/x-www-form-urlencoded">
             <input type="submit" value="Odhlásenie" name="odhlasenie" style="position: absolute;top: 0;right: 0;">
         </form>
     </div>
@@ -85,15 +83,13 @@ if ($_REQUEST['odhlasenie']) {
                     <input type="password" id="inputHesloZnova" name = "zmenaHeslaOpakovanie">
                 </div>
             </div>
-            //možno refresh po zrušení
             <input onclick="return confirm('Chcete určite zmeniť údaje?')" type="submit" value="Zmena údajov" name = "zmenaUdajov" style="width: 100%; height: 10%; font-size: 16pt; margin: auto">
             <input type="submit" value="Zmazanie účtu" name = "zmazanieUctu" style="width: 100%; height: 10%; font-size: 16pt; margin-top: 10px" onclick="return confirm('Chcete určite vymazať účet?')">
         </form>
 
     </div>
 </div>
-
-<footer style="position: fixed">
+<footer style="text-align: left;position: fixed;bottom: 0;left:0">
     <p> ©2021 Author: Andrea Meleková</p>
     <p><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
 </footer>

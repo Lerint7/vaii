@@ -1,10 +1,10 @@
-<?php include('pracaSDatabazou/registracia2.php');
+<?php include('pracaSDatabazou/registracia.php');
 require_once "zakladneStranky/head.php";
 require_once "pracaSDatabazou/prihlasovanie.php";
 require_once "pracaSDatabazou/pripojenie.php";
 
 if ($_REQUEST['registracia']) {
-    $registracia = new registracia2($_POST['meno'], $_POST['email'], $_POST['heslo'], $_POST['hesloOpakovanie']);
+    $registracia = new registracia($_POST['meno'], $_POST['email'], $_POST['heslo'], $_POST['hesloOpakovanie']);
     $error = $registracia->porovnanie();
     if (empty($error)) {
         $error = $registracia->nachadzaSa($pripojenie);

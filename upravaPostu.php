@@ -9,7 +9,6 @@ if (!isset($_SESSION['menoLogin'])) {
     header("Location:registraciaStranka.php");
     die;
 }
-
 $id = $_GET['id'];
 $nazovClanku = $_REQUEST['nazovClanku'];
 $obsah = $_REQUEST ['obsah'];
@@ -62,33 +61,16 @@ echo "<span class='postTexty' style='top: 30%;left: 5%;width: 35% '> $popis </sp
 echo "<span class='postTexty' style='top: 15%;left: 3%'> $menoUzivatel </span>";
 
 ?>
-<form method="post" enctype="application/x-www-form-urlencoded" action="">
+<form method="post" enctype="application/x-www-form-urlencoded">
     <div id="myPomocna">
         <select name = "nazovKategoria">
             <?php
-            $insert = $pripojenie->prepare("SELECT nazovKategorie FROM categories ORDER BY nazovKategorie ASC");
-            $insert->execute();
-            $insert->store_result();
-            $pocetRiadkov = $insert->num_rows();
-            for ($i = 1;$i <= $pocetRiadkov; $i++) {
-                $insert->bind_result($nazovKategoria);
-                $insert->fetch();
-                echo "<option value='$nazovKategoria'>".$nazovKategoria."</option>";
-            }
+                $vypis->vypisDropDowMenu($pripojenie,"nazovKategorie","categories","$nazovKatgorie");
             ?>
         </select>
         <select name = "nazovTopic">
             <?php
-            $nazovTopic= "";
-            $insert1 = $pripojenie->prepare("SELECT nazovTopicu FROM topics ORDER BY nazovTopicu ASC");
-            $insert1->execute();
-            $insert1->store_result();
-            $pocetRiadkov = $insert1->num_rows();
-            for ($i = 1;$i <= $pocetRiadkov; $i++) {
-                $insert1->bind_result($nazovTopic);
-                $insert1->fetch();
-                echo "<option value='$nazovTopic'>".$nazovTopic."</option>";
-            }
+            $vypis->vypisDropDowMenu($pripojenie,"nazovTopicu","topics","$nazovTopic");
             ?>
         </select>
         <input type="text" name="nazovClanku" placeholder="Názov článku" style="width: 100%;margin-top: 1%">

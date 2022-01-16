@@ -4,7 +4,9 @@ if (session_status() == PHP_SESSION_NONE ) {
 }
 require "zakladneStranky/head.php"
 ?>
-<html>
+<script src="javaScript/funkcie.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 <body>
     <div id="citat">
         <!-- span krátky text-->
@@ -32,17 +34,17 @@ require "zakladneStranky/head.php"
 <div id = "ObrazkyKnih">
     <a onmouseenter="showText1()" onmouseleave="hideText1()" href="kralovnaOhna.php" class="obrazkyKnihOdkaz">
      <img src="https://pbs.twimg.com/media/D2GPQMDWoAAe8G6.jpg" alt="prebal knihy Kráľovna ohňa" class="obrazok">
-        <span class= "text">"Aenean efficitur"</span>
+        <span id ="prvyText" class= "text">"Aenean efficitur"</span>
     </a>
 <!--niečo je zle-->
     <a onmouseenter="showText2()" onmouseleave="hideText2()" class="obrazkyKnihOdkaz" href="panVeze.php">
         <img src="https://pbs.twimg.com/media/D2GPR0oXcAUAqnD?format=jpg&name=medium" alt="prebal knihy Pán veže" class="obrazok">
-        <em class= "text">"Iny text"</em>
+        <span id ="druhyText" class="text">"Iny text"</span>
     </a>
 
     <a onmouseenter="showText3()" onmouseleave="hideText3()" class="obrazkyKnihOdkaz" href="piesenKrvy.php">
         <img src="https://cdnb.artstation.com/p/assets/images/images/001/464/415/large/navar-n-1.jpg?1446885755" alt="prebal knihy Píseň krve" class="obrazok">
-        <p class= "text">"treti text"</p>
+        <span id ="tretiText" class="text">"treti text"</span>
     </a>
 </div>
 
@@ -52,36 +54,5 @@ require "zakladneStranky/head.php"
     <p style="text-align: right"> ©2021 Author: Andrea Meleková</p>
     <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
 </footer>
-<!--treba dať dokopy-->
-<script>
-    function showText1() {
-        var text = document.querySelector("span.text ");
-        text.classList.add("active");
-    }
-
-    function hideText1() {
-        var text = document.querySelector("span.text");
-        text.classList.remove("active");
-    }
-    function showText2() {
-        var text = document.querySelector("em.text ");
-        text.classList.add("active");
-    }
-
-    function hideText2() {
-        var text = document.querySelector("em.text ");
-        text.classList.remove("active");
-    }
-
-    function showText3() {
-        var text = document.querySelector("p.text ");
-        text.classList.add("active");
-    }
-
-    function hideText3() {
-        var text = document.querySelector("p.text ");
-        text.classList.remove("active");
-    }
-</script>
 </body>
 </html>

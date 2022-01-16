@@ -6,9 +6,10 @@ require_once "pracaSDatabazou/pripojenie.php";
 require "zakladneStranky/head.php";
 require_once "zakladneStranky/postZakladnaStranka.php";
 ?>
+<script src="javaScript/funkcie.js"></script>
 <!DOCTYPE html>
 <div id = myDropdown>
-    <form action="">
+    <form>
         <select name="post" onchange="showPost(this.value)">
             <option value="Select">Select</option>
             <?php
@@ -31,22 +32,6 @@ require_once "zakladneStranky/postZakladnaStranka.php";
         </select>
     </form>
 </div>
-
-<div id="informacie">INFORMÁCIE O POSTE SA ZOBRAZIA TU </div>
-
-<script>
-    function showPost(nazov) {
-        if (nazov == "") {
-            document.getElementById("informacie").innerHTML = "";
-            return;
-        }
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
-            document.getElementById("informacie").innerHTML = this.responseText;
-        }
-        xhttp.open("GET", "ajax.php?q="+nazov);
-        xhttp.send();
-    }
-</script>
+<div id="informacie"></div>
 </body>
 </html>

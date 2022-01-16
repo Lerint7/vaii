@@ -1,26 +1,64 @@
-
-function pridanieKategorie() {
-// Get the modal
-    var modal = document.getElementById("myModal");
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    // When the user clicks the button, open the modal
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+function ukazat(pomocna){
+    document.getElementById(pomocna).style.display = "block";
 }
+
+function schovat(pomocna){
+    document.getElementById(pomocna).style.display = "none";
+}
+
+function deleteZDatabazy(id) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        document.getElementById(id).innerHTML = this.responseText;
+    }
+    xhttp.open("GET", "ajaxDelete.php?id="+id, true);
+    xhttp.send();
+}
+
+
+function showText1() {
+    var text = document.getElementById("prvyText");
+    text.classList.add("active");
+}
+
+function hideText1() {
+    var text = document.getElementById("prvyText");
+    text.classList.remove("active");
+}
+function showText2() {
+    var text = document.getElementById("druhyText");
+    text.classList.add("active");
+}
+
+function hideText2() {
+    var text = document.getElementById("druhyText");
+    text.classList.remove("active");
+}
+
+function showText3() {
+    var text = document.getElementById("tretiText");
+    text.classList.add("active");
+}
+
+function hideText3() {
+    var text = document.getElementById("tretiText");
+    text.classList.remove("active");
+}
+
+function showPost(nazov) {
+
+    if (nazov == "") {
+        document.getElementById("informacie").innerHTML = "";
+        return;
+    }
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        document.getElementById("informacie").innerHTML = this.responseText;
+    }
+    xhttp.open("GET", "selectAjax.php?q="+nazov,true);
+    xhttp.send();
+}
+
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
     let parametre = {

@@ -3,10 +3,9 @@ if (session_status() == PHP_SESSION_NONE ) {
     session_start();
 }
 require_once "pracaSDatabazou/pripojenie.php";
-require "zakladneStranky/head.php";
+require_once "zakladneStranky/head.php";
 require_once "zakladneStranky/postZakladnaStranka.php";
 require_once "pracaSDatabazou/vypisyZDatabazy.php";
-
 $admin = "";
 $idPomocna = "";
 $insert = $pripojenie->prepare("SELECT rola FROM users WHERE meno = ?");
@@ -40,10 +39,9 @@ if  ($_REQUEST['nazovK']) {
 
 ?>
 <script src="javaScript/funkcie.js"></script>
-
 <div id = obrazokForum>
     <div id = newForum>
-        <a href="newPost.php" id = button type=“funkciaNewForum” >New Topic</a>
+        <a href="newPost.php" id = "button" >Novy post</a>
         <div id = textForum>
             <a style="font-size: 20pt"> General discussion </a>
             <a style="font-size: 14pt"> Post your general discussion topics here</a>
@@ -52,22 +50,20 @@ if  ($_REQUEST['nazovK']) {
 </div>
 
 <div id = "kategorieTelo">
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
+    <div id="modalKategorie" class="modal">
         <form class="modalObsah" style="display: inline-grid" method="post" enctype="application/x-www-form-urlencoded" >
-            <span class="close">X</span>
+            <span onclick="schovat('modalKategorie')" class="close">X</span>
             <span style="text-align: center">Zadajte názov kategórie</span>
             <input style="left: 40%;position: relative" type="text" name="nazov">
             <span style="text-align: center">Zadajte popis kategórie</span>
             <input style="left: 40%;position: relative" type="text" name="popis">
             <input style="left: 40%; position: relative" type="submit" value="Pridať">
         </form>
-
     </div>
-    <div id="myModaly" class="modaly">
-        <!-- Modal content -->
+
+    <div id="modalTopicy" class="modal">
         <form class="modalObsah" style="display: inline-grid" method="post" enctype="application/x-www-form-urlencoded" >
-            <span class="closey">X</span>
+            <span onclick="schovat('modalTopicy')" class="close">X</span>
             <span style="text-align: center">Zadajte id kategórie</span>
             <input style="left: 40%;position: relative" type="text" name="idK">
             <span style="text-align: center">Zadajte názov topicu</span>
@@ -81,7 +77,7 @@ if  ($_REQUEST['nazovK']) {
 
     <?php
     if ($admin == 1) {
-        echo '<button style="width: -webkit-fill-available; height: auto;"  id="myBtn" class="kategorie_odkazy">Pridanie kategorie</button>';
+        echo '<button onclick="ukazat(\''. "modalKategorie" .'\')" style="width: -webkit-fill-available; height: auto;"  id="myBtn" class="kategorie_odkazy">Pridanie kategorie</button>';
     }
     $vypis = new vypisyZDatabazy();
     $vypis->kategorieForum($pripojenie);
@@ -90,55 +86,10 @@ if  ($_REQUEST['nazovK']) {
 </div>
 <div id = "topicyTelo">
     <?php
-
     if ($admin == 1) {
-        echo '<button style="width: -webkit-fill-available; height: auto;"  id="myBtny" class="topicy_odkazy">Pridanie topicu</button>';
+        echo '<button onclick="ukazat(\''. "modalTopicy" .'\')" style="width: -webkit-fill-available; height: auto;"  id="myBtny" class="topicy_odkazy">Pridanie topicu</button>';
     }
     $id = ($_GET['id']);
     $vypis->topikyForum($pripojenie, $id);
     ?>
 </div>
-<script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-<script>
-    // Get the modal
-    var modaly = document.getElementById("myModaly");
-    // Get the button that opens the modal
-    var btny = document.getElementById("myBtny");
-    // Get the <span> element that closes the modal
-    var spany = document.getElementsByClassName("closey")[0];
-    // When the user clicks the button, open the modal
-    btny.onclick = function() {
-        modaly.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-    spany.onclick = function() {
-        modaly.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modaly) {
-            modaly.style.display = "none";
-        }
-    }
-</script>

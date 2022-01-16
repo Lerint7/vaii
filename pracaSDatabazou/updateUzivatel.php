@@ -1,4 +1,6 @@
 <?php
+require_once "pracaSDatabazou/vypisyZDatabazy.php";
+
 if (session_status() == PHP_SESSION_NONE ) {
     session_start();
 }
@@ -18,15 +20,15 @@ class updateUzivatel
 
         function zmenaMailu($pripojenie){
             $znaky = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
-            if (!preg_match ($znaky, $_POST['zmenaMailu'])) {
-                $message = "Email nie je platný";
-                echo "<script type='text/javascript'>alert('$message');</script>";
-            } else {
-                $insert = $pripojenie->prepare("UPDATE users set email = ? where meno = ?");
-                $insert->bind_param('ss', $_POST['zmenaMailu'] , $_SESSION['menoLogin']);
-                $insert->execute();
-                header("Refresh:0");
-            }
+                if (!preg_match ($znaky, $_POST['zmenaMailu'])) {
+                    $message = "Email nie je platný";
+                    echo "<script type='text/javascript'>alert('$message');</script>";
+                } else {
+                    $insert = $pripojenie->prepare("UPDATE users set email = ? where meno = ?");
+                    $insert->bind_param('ss', $_POST['zmenaMailu'], $_SESSION['menoLogin']);
+                    $insert->execute();
+                    header("Refresh:0");
+                }
         }
 
         function zmazanieUctu($pripojenie){

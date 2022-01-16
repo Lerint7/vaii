@@ -1,5 +1,4 @@
 <?php require "zakladneStranky/head.php" ?>
-<script type = "text/javascript" src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +7,7 @@
     <div style="background-image: url('https://i.ibb.co/6nV300V/pozadie1.png');
          width: 100%;height: 100vh;position: fixed;opacity: 0.2" >
     </div>
+
     <div id="stredStranky">
         <div class="titulka">
             <img src="https://i.pinimg.com/564x/81/f2/f6/81f2f6c4e9b56f7307ba0830f7fc34aa.jpg" alt="výjav z knihy" style="width: 100%">
@@ -21,15 +21,18 @@
                 <p> Nunc sem massa, ultricies et quam non, sagittis porttitor arcu. Nullam ut est condimentum, blandit lacus sit amet, aliquam leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras malesuada ligula vel ligula ultrices, sit amet sagittis elit pellentesque. Quisque elementum porta porta. Phasellus aliquet facilisis nunc, in iaculis neque cursus ut. Cras placerat aliquet elit, non viverra tortor gravida at. Duis efficitur risus non placerat lobortis. Pellentesque gravida felis et massa volutpat, in accumsan tellus vulputate.</p>
             </div>
         </div>
+
+        <div class="vyhladavaciPanel">
+            <img src="https://wallpapercave.com/wp/XBiMAN1.jpg" alt="výjav z knihy" style="width: 100%">
+            <div class = "panelText">
+                <p>“Explore.”</p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo, a varius purus lorem in massa.Lorem ipsum dolor sit amet. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo.</span>
+            </div>
+        </div>
+
     </div>
 
-    <div class="vyhladavaciPanel">
-        <img src="https://wallpapercave.com/wp/XBiMAN1.jpg" alt="výjav z knihy" style="width: 100%">
-        <div class = "panelText">
-            <p>“Explore.”</p>
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo, a varius purus lorem in massa.Lorem ipsum dolor sit amet. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur, mauris molestie eleifend lobortis, justo erat suscipit leo.</span>
-        </div>
-    </div>
+
 </main >
 
 <footer >

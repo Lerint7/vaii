@@ -10,6 +10,7 @@ require_once "pracaSDatabazou/pripojenie.php";
 require_once "pracaSDatabazou/vkladaniePostu.php";
 require_once "zakladneStranky/head.php";
 require_once "zakladneStranky/postZakladnaStranka.php";
+require_once "pracaSDatabazou/vypisyZDatabazy.php";
 
 if ($_REQUEST['submit']) {
     $novyPost =  new vkladaniePostu($_POST['nazovKategoria'],$_POST['nazovTopic'],$_POST['nazovLCanku'],$_POST ['obsah'],$_SESSION['menoLogin']);
@@ -25,32 +26,15 @@ if ($_REQUEST['submit']) {
         <select name = "nazovKategoria">
             <option value="Select">Select</option>
             <?php
-            $insert = $pripojenie->prepare("SELECT nazovKategorie FROM categories ORDER BY nazovKategorie ASC");
-            $insert->execute();
-            $insert->store_result();
-            $pocetRiadkov = $insert->num_rows();
-            for ($i = 1;$i <= $pocetRiadkov; $i++) {
-                $insert->bind_result($nazovKategoria);
-                $idPomocna = $_GET['id'];
-                $insert->fetch();
-                echo "<option value='$nazovKategoria'>".$nazovKategoria."</option>";
-            }
+            $vypis = new vypisyZDatabazy();
+            $vypis->vypisDropDowMenu($pripojenie,"nazovKategorie","categories",$nazovKatgorie);
             ?>
         </select>
         <select name = "nazovTopic">
             <option value="Select">Select</option>
             <?php
-            $nazovTopic= "";
-            $insert1 = $pripojenie->prepare("SELECT nazovTopicu FROM topics ORDER BY nazovTopicu ASC");
-            $insert1->execute();
-            $insert1->store_result();
-            $pocetRiadkov = $insert1->num_rows();
-            for ($i = 1;$i <= $pocetRiadkov; $i++) {
-                $insert1->bind_result($nazovTopic);
-                $idPomocna = $_GET['id'];
-                $insert1->fetch();
-                echo "<option value='$nazovTopic'>".$nazovTopic."</option>";
-            }
+            $vypis = new vypisyZDatabazy();
+            $vypis->vypisDropDowMenu($pripojenie,"nazovTopicu","topics",$nazovTopic);
             ?>
         </select>
         <input type="text" name="nazovLCanku" placeholder="Názov článku" required style="width: 60%;">

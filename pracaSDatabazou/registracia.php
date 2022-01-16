@@ -1,6 +1,6 @@
 <?php
 include_once "pracaSDatabazou/pripojenie.php";
-class registracia2
+class registracia
 {
     public string $error = "";
     private string $meno =  "";

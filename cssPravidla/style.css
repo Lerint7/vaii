@@ -5,72 +5,6 @@
     padding: 0;
 }
 
-.modal {
-display: none; /* Hidden by default */
-position: fixed; /* Stay in place */
-z-index: 1; /* Sit on top */
-width: 70%; /* Full width */
-height: 100%; /* Full height */
-}
-
-/* Modal Content */
-.modalObsah {
-    background-color: #fefefe;
-    width: 80%;
-    height: 250px;
-    margin-left: 10%;
-}
-
-/* The Close Button */
-.close {
-    font-size: 15pt;
-    font-weight: bold;
-    left: 95%;
-    position: relative;
-}
-
-.close:hover,
-.close:focus {
-    cursor: pointer;
-}
-
-
-.modaly {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    width: 70%; /* Full width */
-    height: 100%; /* Full height */
-}
-
-/* Modal Content */
-.modalObsahy {
-    background-color: #fefefe;
-    width: 80%;
-    height: 300px;
-    margin-left: 10%;
-}
-
-/* The Close Button */
-.closey {
-    font-size: 15pt;
-    font-weight: bold;
-    left: 95%;
-    position: relative;
-}
-
-.closey:hover,
-.closey:focus {
-    cursor: pointer;
-}
-
-
-
-
-
-
-
-
 :root {
     --tmava: #1C1F23;
     --tmavoModra: #23374C;
@@ -244,9 +178,10 @@ div#stredStranky {
     align-content: center;
     text-align: center;
     width: 20%;
-    position: relative;
-    top: 70px;
-    left: 10%;
+    position: absolute;
+    top: 20px;
+    left: 0%;
+    height: 100%;
 }
 
 .textClanku {
@@ -476,6 +411,7 @@ div#topicyTelo {
     right: 15%;
 }
 
+
 .kategorie_odkazy {
     background-color: var(--modra);
     border: 2px solid var(--tmavoModra);
@@ -528,12 +464,6 @@ div#myDropdown {
     width: 70%;
 }
 
-
-
-
-
-
-
 div#myPomocna{
     display: flex;
     position: absolute;
@@ -544,17 +474,6 @@ div#myPomocna{
     flex-direction: column;
     flex-wrap: nowrap;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 div#myDropdown select {
     font-size: 15pt;
@@ -598,6 +517,32 @@ div#postyTelo {
     bottom: 5px;
 }
 
+/*forumMODAL*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 70%;
+    height: 100%;
+}
+
+.modalObsah {
+    background-color: var(--biela);
+    width: 80%;
+    height: 300px;
+    margin-left: 10%;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 15pt;
+    font-weight: bold;
+    left: 95%;
+    position: relative;
+}
+
+
 /* filter postov*/
 div#informacie {
     position: absolute;
@@ -611,16 +556,16 @@ div#informacie {
 /*930 šírka*/
 @media screen and (max-width: 930px) {
     div#profil {
+        top: 15%;
         left: 0;
         right: 0;
         width: 100%;
-        height: 85%;
+        height: 80%;
     }
     div#profilFoto {
         left:27%
     }
 }
-
 
 
 @media screen and (max-width: 740px) {
@@ -632,9 +577,9 @@ div#informacie {
     }
     div#profiloveOkno {
         left: 0;
-        top: 5%;
+        top: 0;
         width: 100%;
-        height: 50%;
+        height: 55%;
     }
     div#profilFoto {
         top: 10%;
@@ -642,7 +587,6 @@ div#informacie {
         width: 25vw;
         height: 25vw;
     }
-
 }
 
 @media screen and (max-width: 425px){
@@ -710,14 +654,14 @@ div#informacie {
         right: 0;
         left: 0;
     }
-
     nav#menu{
         top: -30px;
+        left: 40px;
     }
 }
 
 /*CLANOK*/
-@media screen and (max-width: 700px){
+@media screen and (max-width: 800px){
     div#stredStranky {
         width: 100%;
         padding-left: 0;
@@ -725,8 +669,7 @@ div#informacie {
 
     .vyhladavaciPanel{
         width: 100%;
-        position: absolute;
-        left: 0;
+        position: relative;
     }
 }
 

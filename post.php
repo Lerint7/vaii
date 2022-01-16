@@ -5,7 +5,6 @@ if(isset($_GET['id'])) {
 if (session_status() == PHP_SESSION_NONE ) {
     session_start();
 }
-
 require_once "pracaSDatabazou/pripojenie.php";
 require_once "pracaSDatabazou/vypisyZDatabazy.php";
 require_once "zakladneStranky/head.php";
@@ -22,7 +21,6 @@ require_once "zakladneStranky/postZakladnaStranka.php";
         $popis = $vypis->getPopisPostu();
         $menoUzivatel = $vypis->getMenoUzivatel();
         if($menoUzivatel =  $_SESSION['menoLogin']){
-            echo "<a class='postTexty' style='left: 12%' onclick='' href='upravaPostu.php'> Vymazať  </a>";
             echo "<a class='postTexty' style='right: 12%' onclick='' href='upravaPostu.php?id=" . $id . "'> Upraviť  </a>";
         }
 
