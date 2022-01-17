@@ -36,12 +36,10 @@ require "zakladneStranky/head.php"
      <img src="https://pbs.twimg.com/media/D2GPQMDWoAAe8G6.jpg" alt="prebal knihy Kráľovna ohňa" class="obrazok">
         <span id ="prvyText" class= "text">"Aenean efficitur"</span>
     </a>
-<!--niečo je zle-->
     <a onmouseenter="showText2()" onmouseleave="hideText2()" class="obrazkyKnihOdkaz" href="panVeze.php">
         <img src="https://pbs.twimg.com/media/D2GPR0oXcAUAqnD?format=jpg&name=medium" alt="prebal knihy Pán veže" class="obrazok">
         <span id ="druhyText" class="text">"Iny text"</span>
     </a>
-
     <a onmouseenter="showText3()" onmouseleave="hideText3()" class="obrazkyKnihOdkaz" href="piesenKrvy.php">
         <img src="https://cdnb.artstation.com/p/assets/images/images/001/464/415/large/navar-n-1.jpg?1446885755" alt="prebal knihy Píseň krve" class="obrazok">
         <span id ="tretiText" class="text">"treti text"</span>

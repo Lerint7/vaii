@@ -27,7 +27,7 @@ if ($_REQUEST['prihlasenie']) {
     }
 }
 ?>
-
+<script src="javaScript/funkcie.js"></script>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -57,14 +57,10 @@ if ($_REQUEST['prihlasenie']) {
          <?php echo $error; ?>
         <input type="text" name="meno" placeholder="Užívateľ" required minlength="6">
         <input type="text" name="email" placeholder="E-mailová adresa" required >
-
-            <input id ="passwd" oninput="kontrolaSilyHesla()" type="password" name="heslo" placeholder="Heslo" required minlength="6">
-
+        <input id ="passwd" oninput="kontrolaSilyHesla()" type="password" name="heslo" placeholder="Heslo" required minlength="6">
         <div id = "barSila" style="width: 80%; height: 30px "></div>
-        <p id = "msg" style="font-weight: bold;font-size: 14pt; color: var(--modra)">Sila hesla</p>
-        <script src="javaScript/funkcie.js"></script>
+        <span id = "sprava" style="font-weight: bold;font-size: 14pt; color: var(--modra)">Sila hesla</span>
             <input type="password" name="hesloOpakovanie" placeholder="Zadajte heslo znova" required>
-
         <input type="submit" value="REGISTRÁCIA" name="registracia">
     </div>
     <div id ="RegistraciaSocialne">
