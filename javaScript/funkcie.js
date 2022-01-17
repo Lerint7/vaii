@@ -72,16 +72,16 @@ window.onclick = function(event) {
 }
 document.getElementById("myDropdown").classList.toggle("show");
 
-let parametre = {
-    pocet : false,
-    pismena :false,
-    cisla : false,
-    specialne : false
-}
-let barSila = document.getElementById("barSila");
-let sprava = document.getElementById("sprava");
-
 function kontrolaSilyHesla () {
+    let parametre = {
+        pocet : false,
+        pismena :false,
+        cisla : false,
+        specialne : false
+    }
+    let barSila = document.getElementById("barSila");
+    let sprava = document.getElementById("sprava");
+
     let password = document.getElementById("passwd").value;
     parametre.pismena = (/[A-Za-z]+/.test(password)) ? true : false;
     parametre.cisla = (/[0-9]+/.test(password)) ? true : false;
