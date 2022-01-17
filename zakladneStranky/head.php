@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../cssPravidla/style.css?v=<?php echo time(); ?>">
     <title>Title</title>
+    <script src="javaScript/funkcie.js"></script>
 </head>
 
 <header>

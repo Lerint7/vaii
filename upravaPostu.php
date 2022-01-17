@@ -10,7 +10,6 @@ if (!isset($_SESSION['menoLogin'])) {
     die;
 }
 $id = $_GET['id'];
-$nazovClanku = $_REQUEST['nazovClanku'];
 $obsah = $_REQUEST ['obsah'];
 
 if ($_REQUEST['submit']) {
@@ -33,7 +32,13 @@ if ($_REQUEST['submit']) {
 
     $nazovClanku = $_REQUEST['nazovClanku'];
     if (!empty($nazovClanku)) {
-        $updatePostu->updatePostu($pripojenie,"nazovPostu",$nazovClanku,$id);
+         $kontrola = new vypisyZDatabazy();
+         echo($nazovClanku);
+            if($kontrola->nachadzaSa($pripojenie,'post','nazovPostu', $nazovClanku) < 1) {
+                $updatePostu->updatePostu($pripojenie,"nazovPostu",$nazovClanku,$id);
+            } else {
+                echo "<script type='text/javascript'>alert('Post s týmto menom už existuje');</script>";
+            }
     }
 
     $obsahClanku = $_REQUEST['obsah'];
@@ -56,10 +61,11 @@ $nazov = $vypis->getNazovPostu();
 $popis = $vypis->getPopisPostu();
 $menoUzivatel = $vypis->getMenoUzivatel();
 
+echo "<div id ='povodnyClanok' style='position: relative;width: 50%;height: 94vh;'>";
 echo "<span class='postTexty' style='top: 20%;left: 14%;font-size: 20pt'> $nazov </span>";
-echo "<span class='postTexty' style='top: 30%;left: 5%;width: 35% '> $popis </span>";
+echo "<span class='postTexty' style='top: 30%;left: 5%;inline-size: min-content;width: 85%;overflow-wrap: anywhere;'> $popis </span>";
 echo "<span class='postTexty' style='top: 15%;left: 3%'> $menoUzivatel </span>";
-
+echo "</div>";
 ?>
 <form method="post" enctype="application/x-www-form-urlencoded">
     <div id="myPomocna">
@@ -74,12 +80,12 @@ echo "<span class='postTexty' style='top: 15%;left: 3%'> $menoUzivatel </span>";
             ?>
         </select>
         <input type="text" name="nazovClanku" placeholder="Názov článku" style="width: 100%;margin-top: 1%">
-        <textarea name="obsah" rows="5" style="position: absolute;top: 100%;width: 100%;height: 240px;left: 0%"> </textarea>
+        <textarea name="obsah" maxlength="1000" minlength="50" style="position: absolute;top: 100%;width: 100%;height: 240px;left: 0; resize: none"></textarea>
         <input type="submit" name = "submit"  style=" position: relative;height: 30px;font-size: 14pt;width: 60%;left: 20%;top: 300px;">
     </div>
 </form>
 
-<footer style= "top: 94.5vh;">
+<footer>
         <p style="text-align: right; color: var(--biela)"> ©2021 Author: Andrea Meleková</p>
         <p style="text-align: right"><a href="mailto:a.melekova@gmail.com">a.melekova@gmail.com</a></p>
     </footer>

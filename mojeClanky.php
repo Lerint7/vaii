@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE ) {
     session_start();
     $uzivatel = $_SESSION['menoLogin'];
 }
+
 echo '<script src="javaScript/funkcie.js"></script>';
 require_once "pracaSDatabazou/pripojenie.php";
 require_once "zakladneStranky/head.php";

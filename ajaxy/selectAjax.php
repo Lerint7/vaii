@@ -1,12 +1,11 @@
 <?php
-require_once "pracaSDatabazou/pripojenie.php";
+require_once "../pracaSDatabazou/pripojenie.php";
 $sql = $pripojenie->prepare("SELECT nazovPostu, obsah,meno FROM post 
                             join users u on post.idPouzivatel = u.id WHERE nazovPostu = ?");
 $sql->bind_param("s", $_GET['q']);
 $sql->execute();
 $sql->store_result();
 $sql->bind_result($name, $popis, $menoUzivatela);
-echo $name;
 $sql->fetch();
 $sql->close();
 

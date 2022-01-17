@@ -3,6 +3,7 @@ require_once "pracaSDatabazou/pripojenie.php";
 require_once "zakladneStranky/head.php";
 require_once "pracaSDatabazou/prihlasovanie.php";
 require_once "pracaSDatabazou/updateUzivatel.php";
+require_once "pracaSDatabazou/vypisyZDatabazy.php";
 
 if (!isset($_SESSION['menoLogin'])) {
     header("Location:registraciaStranka.php");
@@ -20,16 +21,27 @@ $insert->fetch();
 
 if (isset($_POST['zmenaMena'])) {
     $update = new updateUzivatel();
-    $update->zmenaMena($pripojenie);
+    $kontrola = new vypisyZDatabazy();
+    if($kontrola->nachadzaSa($pripojenie,'users','meno', $_POST['zmenaMena']) < 1){
+        $update->zmenaMena($pripojenie);
+    } else {
+        echo "<script type='text/javascript'>alert('Toto meno už niekto používa');</script>";
+        header("Refresh:0");
+    }
 
 }
 
 if (isset($_POST['zmenaMailu'])) {
-    $update->zmenaMailu($pripojenie);
+    if($kontrola->nachadzaSa($pripojenie,'users','email', $_POST['zmenaMailu']) < 1){
+        $update->zmenaMailu($pripojenie);
+    } else {
+        echo "<script type='text/javascript'>alert('Tento email už niekto používa');</script>";
+        header("Refresh:0");
+    }
 }
 
 if (isset($_POST['zmazanieUctu'])) {
-    $update->zmazanieUctu($pripojenie);
+    $update->zmazanieUctu($pripojenie,$menoLogin);
 }
 
 if ( (!empty($_POST['zmenaHesla'])) && (!empty($_POST['zmenaHeslaOpakovanie'])) ) {

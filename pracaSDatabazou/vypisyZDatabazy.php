@@ -1,18 +1,52 @@
 <?php
 echo '<script src="javaScript/funkcie.js"></script>';
 
+/**
+ * Táto trieda má na starosti vyberanie údajov z databázy, ktoré následne využívajú iné php stránky.
+ */
 class vypisyZDatabazy
 {
+    /**Počet riadkov, ktoré vyberiem
+     * @var int
+     */
     private int $pocetRiadkov = 0;
+    /**Id priháseného použivateľa
+     * @var string
+     */
     private string $idPrihlaseneho = "";
+    /**premenná ktorá obsahuje posty, ktoré vyberiem
+     * @var string
+     */
     private string $posty = "";
+    /**Meno použivateľa
+     * @var string
+     */
     private string $menoUzivatel = "";
+    /**Názov daného postu
+     * @var string
+     */
     private string $nazovPostu = "";
+    /**Obsah daného postu
+     * @var string
+     */
     private string $popisPostu = "";
+    /**id uživateľa, ktorý tento post napísal
+     * @var int
+     */
     private int $idUzivatelaPostu = 0;
+    /**Id daného topicu
+     * @var int
+     */
     private int $idTopicu = 0;
+    /**Id danej kategórie
+     * @var int
+     */
     private int $idkategorie = 0;
 
+    /**Táto funkcia vracia id zadaného užívetľa na základe mena
+     * @param $pripojenie - pripojenie do databázy
+     * @param $uzivatel - meno uživateľa
+     */
     function ziskanieID($pripojenie, $uzivatel) {
         $insert = $pripojenie->prepare('SELECT id from users where meno = ?');
         $insert->bind_param('s', $uzivatel);
@@ -22,6 +56,9 @@ class vypisyZDatabazy
         $insert->fetch();
     }
 
+    /**Táto funkcia vyťahuje všetky články uživateľa a následne ich vypisuje ako odkazy
+     * @param $pripojenie - pripojenie na databázu
+     */
     function mojeClanky($pripojenie) {
         $insert = $pripojenie->prepare("SELECT idPost,nazovPostu,obsah FROM post where idPouzivatel = '$this->idPrihlaseneho' ORDER BY nazovPostu ASC");
         $insert->execute();
@@ -43,7 +80,12 @@ class vypisyZDatabazy
         }
     }
 
-    function posty ($pripojenie,$idPomocna){
+    /**Táto funkcia vyberá informácie o poste, na základe jeho idé, zadaného ako idPomocna. V tejto funkcii zisťujem ako meno uživateĺa
+     * ktorý tento post napísal.
+     * @param $pripojenie - pripojenie do databázy
+     * @param $idPomocna - id postu
+     */
+    function posty ($pripojenie, $idPomocna){
         $insert = $pripojenie->prepare("SELECT idCategories,idTopics,idPouzivatel,nazovPostu,obsah FROM post where idPost = '$idPomocna' ORDER BY nazovPostu ASC");
         $insert->execute();
         $insert->store_result();
@@ -58,6 +100,9 @@ class vypisyZDatabazy
         $pouzivatelMeno->fetch();
     }
 
+    /**Táto funkcia vypisuje všetky kategórie a ukladá ich ako odkazy.
+     * @param $pripojenie - pripojenie do databázy
+     */
     function kategorieForum($pripojenie) {
         $insert = $pripojenie->prepare("SELECT idCategories,nazovKategorie,popisKategorie FROM categories ORDER BY nazovKategorie ASC");
         $insert->execute();
@@ -77,7 +122,11 @@ class vypisyZDatabazy
         }
     }
 
-    function topikyForum($pripojenie,$id) {
+    /**Táto funkcia vypisuje všetky topicy, na základe toho aká kategória bola zvolená a ukladá ich ako odkazy.
+     * @param $pripojenie - do databázy
+     * @param $id - IDkategórie
+     */
+    function topikyForum($pripojenie, $id) {
         if($id) {
             $insertTopic = $pripojenie->prepare("SELECT idTopics,nazovTopicu,popisTopicu FROM topics where idCategories = '$id'  ORDER BY nazovTopicu");
         } else {
@@ -97,14 +146,26 @@ class vypisyZDatabazy
         }
     }
 
-    public function updatePostu($pripojenie,$co, $cozmena,$podmienka)
+    /**Funkcia ktorá updatuje post
+     * @param $pripojenie - pripojenie do databázy
+     * @param $co - ktorý stĺpec nastavujem
+     * @param $cozmena - prvý bindovací paramater
+     * @param $podmienka - druhý bindovací parameter
+     */
+    public function updatePostu($pripojenie, $co, $cozmena, $podmienka)
     {
         $update = $pripojenie->prepare("UPDATE post SET $co = ? where idPost = ?");
         $update->bind_param('si',$cozmena,$podmienka);
         $update->execute();
     }
 
-    public function vypisDropDowMenu ($pripojenie,$nazov,$odkial,$bind) {
+    /**Výpis dropdownMenu na základe zadaných parameterov
+     * @param $pripojenie - pripojenie na dazabázu
+     * @param $nazov - názov stĺpca, ktorý vyberám
+     * @param $odkial - názov tabuľky, z ktorej vyberám
+     * @param $bind - parameter do ktorého bindujem
+     */
+    public function vypisDropDowMenu ($pripojenie, $nazov, $odkial, $bind) {
         $insert1 = $pripojenie->prepare("SELECT $nazov FROM $odkial ORDER BY $nazov ASC");
         $insert1->execute();
         $insert1->store_result();
@@ -116,42 +177,42 @@ class vypisyZDatabazy
         }
     }
 
-    public function vypisDropDownPosty($pripojenie,$id){
-        $insert = $pripojenie->prepare("SELECT nazovPostu FROM post where idTopics = $id ORDER BY nazovPostu ASC");
-        $insert->execute();
-        $insert->store_result();
-        $pocetRiadkov = $insert->num_rows();
-        if ($pocetRiadkov > 0) {
-            for ($i = 1; $i <= $pocetRiadkov; $i++) {
-                $insert->bind_result($nazov);
-                $insert->fetch();
-                echo "<option value='$nazov'>" . $nazov . "</option>";
-            }
-        } else {
-            echo "<option value='post'>Nie su tu žiadne posty</option>";
-        }
-    }
-
-    public function nachadzaSa($pripojenie,$tabulka,$co,$comu):int {
+    /**Táto funkcia zistuje či sa v tabulke nachádza niečo s rovnakým názvom už
+     * @param $pripojenie - pripojenie do databázy
+     * @param $tabulka - názov tabuĺky, v ktorej hľadám
+     * @param $co - stĺpec, v ktorom hľadám hodnotu
+     * @param $comu - hladaná hodnota
+     * @return int - vracia počet riadkov, kde sa meno rovná tomu zadanému
+     */
+    public function nachadzaSa($pripojenie, $tabulka, $co, $comu):int {
         $insert = $pripojenie->prepare("SELECT * from $tabulka where $co = ?");
         $insert->bind_param('s', $comu);
         $insert->execute();
         $insert->store_result();
-        echo $insert->num_rows();;
+        echo $insert->num_rows();
         return $insert->num_rows();
     }
 
+    /**Vracia meni uživateľa
+     * @return string -meno uživateľa
+     */
     public function getMenoUzivatel(): string
     {
         return $this->menoUzivatel;
     }
 
+    /**Vracia obsah postu
+     * @return string -obsah postu
+     */
     public function getPopisPostu(): string
     {
         return $this->popisPostu;
     }
 
 
+    /**Vracia názov postu
+     * @return string - názov postu
+     */
     public function getNazovPostu(): string
     {
         return $this->nazovPostu;

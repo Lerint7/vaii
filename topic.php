@@ -10,7 +10,7 @@ require_once "zakladneStranky/postZakladnaStranka.php";
 <!DOCTYPE html>
 <div id = myDropdown>
     <form>
-        <select name="post" onchange="showPost(this.value)">
+        <select name="post" onchange="ukazPost(this.value)">
             <option value="Select">Select</option>
             <?php
             $id = $_GET['id'];

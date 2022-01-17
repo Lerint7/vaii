@@ -11,7 +11,7 @@ function deleteZDatabazy(id) {
     xhttp.onload = function() {
         document.getElementById(id).innerHTML = this.responseText;
     }
-    xhttp.open("GET", "ajaxDelete.php?id="+id, true);
+    xhttp.open("GET", "ajaxy/ajaxDelete.php?id="+id, true);
     xhttp.send();
 }
 
@@ -45,8 +45,7 @@ function hideText3() {
     text.classList.remove("active");
 }
 
-function showPost(nazov) {
-
+function ukazPost(nazov) {
     if (nazov == "") {
         document.getElementById("informacie").innerHTML = "";
         return;
@@ -55,7 +54,7 @@ function showPost(nazov) {
     xhttp.onload = function() {
         document.getElementById("informacie").innerHTML = this.responseText;
     }
-    xhttp.open("GET", "selectAjax.php?q="+nazov,true);
+    xhttp.open("GET", "ajaxy/selectAjax.php?q="+nazov,true);
     xhttp.send();
 }
 

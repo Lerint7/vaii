@@ -29,14 +29,6 @@ if ($_REQUEST['prihlasenie']) {
 ?>
 <!DOCTYPE html>
 <html lang="en" >
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--veľkost stránky, aby sa šírka nastavila a aký je pomer-->
-    <link rel="stylesheet" href="cssPravidla/style.css?v=<?php echo time(); ?>">
-    <title>Title</title>
-    <script src="javaScript/funkcie.js"></script>
-</head>
 
 <body style="background-color:var(--tmavoModra) ">
 
